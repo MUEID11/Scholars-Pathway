@@ -1,4 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+.nav-link {
+  text-decoration: none;
+  color: black;
+  position: relative;
+}
+
+.nav-link:before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #8b5cf6; /* Initial border color */
+  transition: width 0.3s ease; /* Transition effect */
+}
+
+/* .nav-link:hover:before {
+  width: 100%; /* Expand the border on hover
+} */
+
+.nav-link.active:before {
+  width: 100%; /* Expand the border when NavLink is active */
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

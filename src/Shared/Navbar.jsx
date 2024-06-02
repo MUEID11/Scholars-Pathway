@@ -2,35 +2,66 @@ import { useState } from "react";
 import logo from "../../public/vite.png";
 import { CgClose, CgMenu } from "react-icons/cg";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const handleLogout = () => {
+    logOut()
+    .then(()=> {
+        toast.success('User Logged Out')
+    })
+    .catch(error => {
+        console.log(error.message)
+    })
+  }
   const navlinks = (
     <>
-      <NavLink
-        to="/"
-        className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/all"
-        className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-      >
-        All Scholarships
-      </NavLink>
-      <NavLink
-        to="/dashboard"
-        className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-      >
-        Dash Board
-      </NavLink>
-      <NavLink
-        to="/login"
-        className="px-3 py-2 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform rounded-md lg:mt-0 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-      >
-        Login
-      </NavLink>
+      <>
+        <NavLink
+          to="/"
+          activeclassname="active"
+          className="nav-link  py-1 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform lg:mt-0 dark:text-gray-200 "
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/all"
+          activeclassname="active"
+          className="nav-link  py-1 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform lg:mt-0 dark:text-gray-200 "
+        >
+          All Scholarships
+        </NavLink>
+        <NavLink
+          to="/dashboard"
+          activeclassname="active"
+          className="nav-link  py-1 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform lg:mt-0 dark:text-gray-200 "
+        >
+          Dash Board
+        </NavLink>
+        {user ? (
+          <>
+            <button
+              onClick={handleLogout}
+              className="nav-link py-1 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform lg:mt-0 dark:text-gray-200"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <NavLink
+              to="/login"
+              activeclassname="active"
+              className="nav-link  py-1 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform lg:mt-0 dark:text-gray-200 "
+            >
+              Login
+            </NavLink>
+          </>
+        )}
+      </>
     </>
   );
   return (
@@ -83,7 +114,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    src={user?.photoURL}
                   />
                 </div>
               </div>
@@ -92,13 +123,10 @@ const Navbar = () => {
                 className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
+                  <a className="justify-between">{user?.displayName}</a>
                 </li>
                 <li>
-                  <a>Settings</a>
+                  <a>role</a>
                 </li>
                 <li>
                   <a>Logout</a>

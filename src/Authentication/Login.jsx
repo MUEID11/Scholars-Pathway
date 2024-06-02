@@ -1,15 +1,38 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginBg from "../../src/assets/LoginBg.jpg";
 import { useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
+import { PiXLogoBold } from "react-icons/pi";
+import { useForm } from "react-hook-form";
+import useAuth from "../Hooks/useAuth";
+import toast from "react-hot-toast";
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { logIn } = useAuth();
   const [showPass, setShowPass] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const result = await logIn(data?.email, data?.password);
+      console.log(result);
+        navigate(location?.state ? location?.state : '/')
+      toast.success("Sign In Succesfull");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
   return (
     <div
-      className="px-6 mx-auto"
+      className="px-6 container mx-auto"
       style={{ backgroundImage: `url(${loginBg})` }}
     >
-      <div className="flex flex-col items-center py-6 sm:px-36 px-6 lg:h-screen lg:flex-row">
+      <div className="flex flex-col items-center py-6 px-6 lg:h-screen lg:flex-row">
         <div className="lg:w-1/2">
           <h2 className="text-3xl font-semibold text-violet-400 lg:text-4xl">
             Scholar Pathway
@@ -33,21 +56,31 @@ const Login = () => {
                 Sign In
               </h2>
 
-              <form action="#">
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mt-4">
                   <input
+                    {...register("email", { required: true })}
+                    name="email"
                     className="block w-full px-4 py-2 text-gray-700 placeholder-gray-400 bg-white border rounded-md dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:ring-blue-300 focus:outline-none focus:ring"
                     type="email"
                     placeholder="Email address"
                     aria-label="Email address"
                   />
+                  {errors.exampleRequired && (
+                    <span>This field is required</span>
+                  )}
                   <div className="relative">
                     <input
+                      {...register("password", { required: true })}
+                      name="password"
                       className="block relative w-full px-4 py-2 mt-4 text-gray-700 placeholder-gray-400 bg-white border rounded-md dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-500 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:ring-blue-300 focus:outline-none focus:ring"
                       type={showPass ? "text" : "password"}
                       placeholder="Password"
                       aria-label="Password"
                     />
+                    {errors.exampleRequired && (
+                      <span>This field is required</span>
+                    )}
                     <div className="">
                       {showPass ? (
                         <BiShow
@@ -64,7 +97,7 @@ const Login = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-between mt-4 sm:flex-row">
+                <div className="flex flex-col items-center justify-between mt-4 sm:flex-row ">
                   <a
                     href="#"
                     className="text-sm text-gray-600 dark:text-gray-200 hover:underline"
@@ -72,20 +105,30 @@ const Login = () => {
                     Forget Password?not functional
                   </a>
 
-                  <button className="px-6 py-2 font-medium text-white transition-colors duration-300 transform bg-violet-500 rounded-md hover:bg-gray-800 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-800 dark:focus:bg-gray-700">
+                  <button
+                    type="submit"
+                    className="px-6 py-2 sm:mt-0 mt-4 font-medium text-white transition-colors duration-300 transform bg-yellow-500 rounded-md hover:bg-gray-800 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-800 dark:focus:bg-gray-700"
+                  >
                     Sign In
                   </button>
                 </div>
-                <div className="mt-6">
-                  <Link
-                    to="/register"
-                    className="text-sm text-gray-600 dark:text-gray-200 hover:underline"
-                  >
-                    Dont have an account?{" "}
-                    <span className="text-violet-500">Register</span>
-                  </Link>
-                </div>
               </form>
+              <hr className="my-6" />
+              <div>
+                <button className="btn bg-violet-500 sm:btn-md btn-sm w-full flex items-center justify-center text-white">
+                  Sign In With <PiXLogoBold />
+                </button>
+              </div>
+
+              <div className="mt-6">
+                <Link
+                  to="/register"
+                  className="text-sm text-gray-600 dark:text-gray-200 hover:underline"
+                >
+                  Dont have an account?{" "}
+                  <span className="text-violet-500">Register</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
