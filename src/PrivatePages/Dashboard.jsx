@@ -1,11 +1,14 @@
 import { useState } from "react";
-import { MdClose, MdMenu } from "react-icons/md";
+import { MdClose, MdMenu, MdOutlineContactMail } from "react-icons/md";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../public/vite.png";
 import { BiComment, BiHome, BiLogOut } from "react-icons/bi";
+import { BsPerson } from "react-icons/bs";
+
 const Dashboard = () => {
+  const isAdmin = true;
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
   const handleLogout = () => {
@@ -51,37 +54,105 @@ const Dashboard = () => {
           </div>
           <div className="mt-8 w-full">
             <div className="flex flex-col items-center justify-center sm:font-medium space-y-2">
-              <NavLink
-                to="/dashboard/account"
-                className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-              >
-                Account
-              </NavLink>
-              <NavLink
-                to="/dashboard/profile"
-                className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-              >
-                Profile
-              </NavLink>
-              <NavLink
-                to="/dashboard/addreview"
-                className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-              >
-                <span>
-                  <BiComment className="mr-4" />
-                </span>
-                Add Review
-              </NavLink>
-              <NavLink
-                to="/"
-                className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center"
-              >
-                <span>
-                  <BiHome className="mr-6" />
-                </span>
-                Home
-              </NavLink>
+              {isAdmin ? (
+                <div className="tracking-tighter">
+                  <NavLink
+                    to="/dashboard/profile"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BsPerson className="mr-4" />
+                    </span>{" "}
+                    Admin Profile
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/application"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <MdOutlineContactMail className="mr-4" />
+                    </span>
+                    Add scholarship
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/myreviews"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BiComment className="mr-4" />
+                    </span>
+                    Manage Scholarship
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/myreviews"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BiComment className="mr-4" />
+                    </span>
+                   Manage Applied Application
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/manageusers"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BiComment className="mr-4" />
+                    </span>
+                    Manage Users
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/myreviews"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BiComment className="mr-4" />
+                    </span>
+                    My Review
+                  </NavLink>
+                </div>
+              ) : (
+                <>
+                  <NavLink
+                    to="/dashboard/profile"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BsPerson className="mr-4" />
+                    </span>{" "}
+                    My Profile
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/application"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <MdOutlineContactMail className="mr-4" />
+                    </span>
+                    My Application
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/myreviews"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BiComment className="mr-4" />
+                    </span>
+                    My Review
+                  </NavLink>
+                </>
+              )}
             </div>
+            <hr className="my-6" />
+            <NavLink
+              to="/"
+              className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center"
+            >
+              <span>
+                <BiHome className="mr-4" />
+              </span>
+              Home
+            </NavLink>
             <div className="absolute bottom-8 w-full p-6 right-0">
               <button
                 onClick={handleLogout}
@@ -107,7 +178,7 @@ const Dashboard = () => {
                 </a>
 
                 {/* Mobile menu button */}
-                <div className="flex lg:hidden">
+                <div className="flex md:hidden">
                   <button
                     onClick={() => setIsOpen(!isOpen)}
                     type="button"

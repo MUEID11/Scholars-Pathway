@@ -7,8 +7,10 @@ import Register from "../Authentication/Register";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../PrivatePages/Dashboard";
 import AllScholarship from "../Pages/AllScholarship";
-import Account from "../PrivatePages/DashboardPages/Account";
 import Profile from "../PrivatePages/DashboardPages/Profile";
+import MyApplication from "../PrivatePages/DashboardPages/MyApplication";
+import MyReview from "../PrivatePages/DashboardPages/MyReview";
+import ManageUsers from "../PrivatePages/DashboardPages/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -43,12 +45,20 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      { path: 'account',
-      element: <PrivateRoute><Account/></PrivateRoute>
-
-      },
       { path: 'profile',
       element: <PrivateRoute><Profile/></PrivateRoute>
+      },
+      {
+        path: 'application',
+        element: <PrivateRoute><MyApplication /></PrivateRoute>
+      },
+      {
+        path: 'myreviews',
+        element: <PrivateRoute><MyReview/></PrivateRoute>
+      },
+      {
+        path: 'manageusers',
+        element: <PrivateRoute><ManageUsers/></PrivateRoute>
       }
     ],
   },

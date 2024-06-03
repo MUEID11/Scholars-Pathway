@@ -43,12 +43,12 @@ const Navbar = () => {
         </NavLink>
         {user ? (
           <>
-            <button
+            <Link
               onClick={handleLogout}
               className="nav-link py-1 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform lg:mt-0 dark:text-gray-200"
             >
               Logout
-            </button>
+            </Link>
           </>
         ) : (
           <>

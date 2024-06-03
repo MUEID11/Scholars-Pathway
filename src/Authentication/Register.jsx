@@ -7,7 +7,9 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../Hooks/useAuth";
 
 import toast from "react-hot-toast";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const location = useLocation();
   const { createUser, updateUser, setUser } = useAuth();
@@ -18,24 +20,41 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data) => {
-    console.log("consoloing data", data);
     try {
       const result = await createUser(data?.email, data?.password);
-      //update profile
-      await updateUser(data?.name, data?.photo);
-      setUser({
-        ...result?.user,
-        photoURL: data?.photo,
-        displayName: data?.name,
-      });
-      const loggedUser = result?.user;
-      console.log("consoling loggeduser", loggedUser);
-      navigate(location?.state ? location?.state : "/");
-      toast.success("Registration Successfull");
+      // Check if the createUser function returns a user object
+      if (result?.user) {
+        //update profile
+        await updateUser(data?.name, data?.photo).then(() => {
+          const userInfo = {
+            name: data.name,
+            email: data.email,
+          };
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              navigate(location?.state ? location?.state : "/");
+              toast.success("Registration Successfull");
+              console.log("user added to database");
+            }
+          });
+        });
+        setUser({
+          ...result?.user,
+          photoURL: data?.photo,
+          displayName: data?.name,
+        });
+        const loggedUser = result?.user;
+        console.log("consoling loggeduser", loggedUser);
+      } else {
+        // Handle the case where createUser did not return a user object
+        toast.error("Email is already in use");
+      }
     } catch (error) {
+      // Handle other errors, such as network issues or server errors
       toast.error(error.message);
     }
   };
+
   //   console.log(watch("password"));
   const [showPass, setShowPass] = useState(false);
   return (

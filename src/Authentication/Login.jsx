@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 const Login = () => {
-
+//task remain: social login and setting user to data base 
   const navigate = useNavigate();
   const location = useLocation();
   const { logIn} = useAuth();
