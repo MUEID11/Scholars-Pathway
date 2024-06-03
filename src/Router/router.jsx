@@ -7,6 +7,8 @@ import Register from "../Authentication/Register";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../PrivatePages/Dashboard";
 import AllScholarship from "../Pages/AllScholarship";
+import Account from "../PrivatePages/DashboardPages/Account";
+import Profile from "../PrivatePages/DashboardPages/Profile";
 
 export const router = createBrowserRouter([
   {
@@ -20,12 +22,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/all",
-        element: <AllScholarship></AllScholarship>
-      }
-      ,
-      {
-        path: '/dashboard',
-        element: <PrivateRoute><Dashboard/></PrivateRoute>
+        element: <AllScholarship></AllScholarship>,
       },
       {
         path: "/login",
@@ -35,6 +32,24 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    errorElement: <Error/>,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: 'account',
+      element: <PrivateRoute><Account/></PrivateRoute>
+
+      },
+      { path: 'profile',
+      element: <PrivateRoute><Profile/></PrivateRoute>
+      }
     ],
   },
 ]);

@@ -13,7 +13,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #8b5cf6; /* Initial border color */
+  background-color: #a37bff; /* Initial border color */
   transition: width 0.3s ease; /* Transition effect */
 }
 
@@ -23,6 +23,10 @@
 
 .nav-link.active:before {
   width: 100%; /* Expand the border when NavLink is active */
+}
+.dashlinks.active {
+  background-color: #a37bff;
+  color: white; /* Optionally change text color */
 }
 
 @tailwind base;

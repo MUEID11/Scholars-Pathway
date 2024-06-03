@@ -7,9 +7,10 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 const Login = () => {
+
   const navigate = useNavigate();
   const location = useLocation();
-  const { logIn } = useAuth();
+  const { logIn} = useAuth();
   const [showPass, setShowPass] = useState(false);
   const {
     register,
@@ -27,6 +28,7 @@ const Login = () => {
       toast.error(error.message);
     }
   };
+
   return (
     <div
       className="px-6 container mx-auto"

@@ -184,7 +184,7 @@ const Register = () => {
                       htmlFor="photo"
                       className="block text-sm text-gray-500 dark:text-gray-300 text-left"
                     >
-                      Upload Image
+                      Upload Image URL
                     </label>
                     <input
                       {...register("photo", { required: true })}
