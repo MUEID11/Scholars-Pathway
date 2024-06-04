@@ -6,11 +6,12 @@ import { PiXLogoBold } from "react-icons/pi";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 const Login = () => {
-//task remain: social login and setting user to data base 
+  //task remain: social login and setting user to data base
   const navigate = useNavigate();
   const location = useLocation();
-  const { logIn} = useAuth();
+  const { logIn } = useAuth();
   const [showPass, setShowPass] = useState(false);
   const {
     register,
@@ -22,7 +23,7 @@ const Login = () => {
     try {
       const result = await logIn(data?.email, data?.password);
       console.log(result);
-        navigate(location?.state ? location?.state : '/')
+      navigate(location?.state ? location?.state : "/");
       toast.success("Sign In Succesfull");
     } catch (error) {
       toast.error(error.message);
@@ -34,6 +35,9 @@ const Login = () => {
       className="px-6 container mx-auto"
       style={{ backgroundImage: `url(${loginBg})` }}
     >
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <div className="flex flex-col items-center py-6 px-6 lg:h-screen lg:flex-row">
         <div className="lg:w-1/2">
           <h2 className="text-3xl font-semibold text-violet-400 lg:text-4xl">

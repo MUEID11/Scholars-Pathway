@@ -21,36 +21,49 @@ const Register = () => {
   } = useForm();
   const onSubmit = async (data) => {
     try {
+      console.log("Submitting data:", data);
       const result = await createUser(data?.email, data?.password);
-      // Check if the createUser function returns a user object
+      console.log("Result from createUser:", result);
+
       if (result?.user) {
-        //update profile
-        await updateUser(data?.name, data?.photo).then(() => {
+        console.log("User created, updating profile...");
+        await updateUser(data?.name, data?.photo).then(async () => {
           const userInfo = {
             name: data.name,
             email: data.email,
+            role: "User",
           };
-          axiosPublic.post("/users", userInfo).then((res) => {
+          console.log("User info to be posted:", userInfo);
+
+          try {
+            const res = await axiosPublic.post("/users", userInfo);
+            console.log("Response from POST /users:", res);
+
             if (res.data.insertedId) {
+              setUser({
+                ...result?.user,
+                photoURL: data?.photo,
+                displayName: data?.name,
+              });
               navigate(location?.state ? location?.state : "/");
-              toast.success("Registration Successfull");
-              console.log("user added to database");
+              toast.success("Registration Successful");
+              console.log("User added to database");
+            } else {
+              console.log("Failed to insert user into the database");
             }
-          });
+          } catch (postError) {
+            console.error("Error posting user info:", postError);
+            toast.error("Failed to add user to database");
+          }
         });
-        setUser({
-          ...result?.user,
-          photoURL: data?.photo,
-          displayName: data?.name,
-        });
+
         const loggedUser = result?.user;
-        console.log("consoling loggeduser", loggedUser);
+        console.log("Logged user:", loggedUser);
       } else {
-        // Handle the case where createUser did not return a user object
         toast.error("Email is already in use");
       }
     } catch (error) {
-      // Handle other errors, such as network issues or server errors
+      console.error("Error during registration:", error);
       toast.error(error.message);
     }
   };

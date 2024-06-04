@@ -6,9 +6,15 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import logo from "../../public/vite.png";
 import { BiComment, BiHome, BiLogOut } from "react-icons/bi";
 import { BsPerson } from "react-icons/bs";
+import useAdmin from "../Hooks/useAdmin";
+import { TbUsersGroup } from "react-icons/tb";
+import { IoDocumentsOutline } from "react-icons/io5";
+import { SiSemanticscholar } from "react-icons/si";
+import useModerator from "../Hooks/useModerator";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  const [isModerator] = useModerator();
   const [isOpen, setIsOpen] = useState(false);
   const { user, logOut } = useAuth();
   const handleLogout = () => {
@@ -28,12 +34,6 @@ const Dashboard = () => {
         } transition-transform duration-300 ease-in-out sm:translate-x-0 sm:relative sm:w-96 sm:block`}
       >
         <aside className="h-full p-4">
-          {/* <button
-            onClick={() => setIsOpen(false)}
-            className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none sm:hidden"
-          >
-            <MdClose />
-          </button> */}
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center">
               <img className="w-auto h-6 sm:h-10" src={logo} alt="" />
@@ -41,7 +41,13 @@ const Dashboard = () => {
                 Scholar Pathway
               </span>
             </Link>
-            <div className="dropdown dropdown-end">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none sm:hidden"
+            >
+              <MdClose />
+            </button>
+            {/* <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="avatar">
                 <div className="w-8 sm:w-10 rounded-full">
                   <img
@@ -50,7 +56,7 @@ const Dashboard = () => {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="mt-8 w-full">
             <div className="flex flex-col items-center justify-center sm:font-medium space-y-2">
@@ -79,7 +85,7 @@ const Dashboard = () => {
                     className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                   >
                     <span>
-                      <BiComment className="mr-4" />
+                      <SiSemanticscholar className="mr-4" />
                     </span>
                     Manage Scholarship
                   </NavLink>
@@ -88,16 +94,16 @@ const Dashboard = () => {
                     className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                   >
                     <span>
-                      <BiComment className="mr-4" />
+                      <IoDocumentsOutline className="mr-4" />
                     </span>
-                   Manage Applied Application
+                    Manage Applied Applications
                   </NavLink>
                   <NavLink
                     to="/dashboard/manageusers"
                     className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                   >
                     <span>
-                      <BiComment className="mr-4" />
+                      <TbUsersGroup className="mr-4" />
                     </span>
                     Manage Users
                   </NavLink>
@@ -108,7 +114,64 @@ const Dashboard = () => {
                     <span>
                       <BiComment className="mr-4" />
                     </span>
-                    My Review
+                    All Review
+                  </NavLink>
+                </div>
+              ) : isModerator ? (
+                <div className="tracking-tighter">
+                  <NavLink
+                    to="/dashboard/profile"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BsPerson className="mr-4" />
+                    </span>{" "}
+                    Moderator Profile
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/application"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <MdOutlineContactMail className="mr-4" />
+                    </span>
+                    Add scholarship
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/myreviews"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <SiSemanticscholar className="mr-4" />
+                    </span>
+                    Manage Scholarship
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/myreviews"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <IoDocumentsOutline className="mr-4" />
+                    </span>
+                    Manage Applied Applications
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/manageusers"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <TbUsersGroup className="mr-4" />
+                    </span>
+                    Manage Users
+                  </NavLink>
+                  <NavLink
+                    to="/dashboard/myreviews"
+                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                  >
+                    <span>
+                      <BiComment className="mr-4" />
+                    </span>
+                    All review
                   </NavLink>
                 </div>
               ) : (
@@ -138,7 +201,7 @@ const Dashboard = () => {
                     <span>
                       <BiComment className="mr-4" />
                     </span>
-                    My Review
+                   My review
                   </NavLink>
                 </>
               )}
@@ -185,7 +248,7 @@ const Dashboard = () => {
                     className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
                     aria-label="toggle menu"
                   >
-                    {!isOpen ? <MdMenu /> : <MdClose />}
+                    {!isOpen ? <MdMenu /> : <MdClose className="hidden" />}
                   </button>
                 </div>
               </div>
