@@ -156,15 +156,6 @@ const Dashboard = () => {
                     Manage Applied Applications
                   </NavLink>
                   <NavLink
-                    to="/dashboard/manageusers"
-                    className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                  >
-                    <span>
-                      <TbUsersGroup className="mr-4" />
-                    </span>
-                    Manage Users
-                  </NavLink>
-                  <NavLink
                     to="/dashboard/myreviews"
                     className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                   >

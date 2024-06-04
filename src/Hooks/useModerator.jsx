@@ -8,7 +8,7 @@ const useModerator = () => {
   const { data: isModerator } = useQuery({
     queryKey: [user?.email, "isModerator"],
     queryFn: async () => {
-      const res = axiosSecure.get(`/users/moderator/${user?.email}`);
+      const res = await axiosSecure.get(`/users/moderator/${user?.email}`);
       console.log(res.data);
       return res.data?.moderator;
     },

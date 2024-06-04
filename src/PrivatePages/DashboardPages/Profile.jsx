@@ -1,23 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-// import useAuth from "../../Hooks/useAuth";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
+import useAuth from "../../Hooks/useAuth";
+
 
 
 const Profile = () => {
-  const axiosSecure = useAxiosSecure();
-  const {data: users = []} = useQuery({
-    queryKey: ['profile'],
-    queryFn: async() =>{ 
-      const res = await axiosSecure.get('/users');
-      return res.data
-    } 
-     
-  })
-  
+  const {user} = useAuth();
+    
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-sm md:max-w-lg mx-auto">
-        {users.length}
-      {/* <div
+        
+      <div
         className="w-full h-96 bg-gray-300 bg-center bg-cover rounded-lg shadow-md"
         style={{backgroundImage: `url(${user?.photoURL})`}}
       ></div>
@@ -32,7 +24,7 @@ const Profile = () => {
             {user?.email}
           </span>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
