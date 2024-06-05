@@ -72,7 +72,7 @@ const Dashboard = () => {
                     Admin Profile
                   </NavLink>
                   <NavLink
-                    to="/dashboard/application"
+                    to="/dashboard/addscholarship"
                     className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                   >
                     <span>
@@ -129,7 +129,7 @@ const Dashboard = () => {
                     Moderator Profile
                   </NavLink>
                   <NavLink
-                    to="/dashboard/application"
+                    to="/dashboard/addscholarship"
                     className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                   >
                     <span>
@@ -200,17 +200,17 @@ const Dashboard = () => {
             <hr className="my-6" />
             <NavLink
               to="/"
-              className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center"
+              className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center mx-10"
             >
               <span>
                 <BiHome className="mr-4" />
               </span>
               Home
             </NavLink>
-            <div className="absolute bottom-8 w-full p-6 right-0">
+            <div className="absolute bottom-8 w-full p-6 left-8">
               <button
                 onClick={handleLogout}
-                className="w-full bg-violet-500 p-2 sm:p-4 rounded flex items-center justify-center font-semibold"
+                className=" bg-violet-400 p-2 sm:p-4 rounded flex items-center justify-center font-semibold"
               >
                 <span>
                   <BiLogOut className="mr-4" />
@@ -228,7 +228,7 @@ const Dashboard = () => {
             <div className="lg:flex lg:items-center lg:justify-between">
               <div className="flex items-center justify-between">
                 <a className="sm:text-xl font-bold text-gray-500 p-1">
-                  <p>{user?.displayName}'s Dashbord</p>
+                  <p>{user?.displayName}&apos Dashabord</p>
                 </a>
 
                 {/* Mobile menu button */}

@@ -3,15 +3,26 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Table } from "antd";
 import { RiDeleteBinLine } from "react-icons/ri";
+import { useState } from "react";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
+  //handle pagination
+  const [pagination, setPagination] = useState({
+    current: 1,
+    pageSize: 10,
+    total: null,
+  });
+
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
-      return res.data;
+      const res = await axiosSecure.get(
+        `/users?current=${pagination?.current}&pageSize=${pagination?.pageSize}`
+      );
+      setPagination({...pagination, total: res.data.total})
+      return  res.data.result;
     },
+    queryKey: ["users", pagination],
   });
   const handleDeleteUser = (eachUser) => {
     if (eachUser.role === "Admin") {
@@ -73,6 +84,10 @@ const ManageUsers = () => {
       }
     });
   };
+
+  const handleTableChange = (pagination) => {
+    setPagination({...pagination, current: pagination?.current, pageSize: pagination?.pageSize});
+  };
   const columns = [
     {
       title: "Name",
@@ -123,16 +138,29 @@ const ManageUsers = () => {
   ];
   return (
     <section className="container px-4 mx-auto">
-      <div className="flex items-center gap-x-3">
-        <h2 className="text-lg font-medium text-gray-800 dark:text-white">
-          Number Of Users
-        </h2>
+      <div className="flex items-center gap-x-3 mb-6 justify-between">
+        <div>
+          <h2 className="text-lg font-medium text-gray-800 dark:text-white ">
+            Number Of Users
+          </h2>
 
-        <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
-          {users.length} users
-        </span>
+          <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full dark:bg-gray-800 dark:text-blue-400">
+            {pagination?.total} users
+          </span>
+        </div>
+        <div className="mr-24">Sorting user</div>
       </div>
-      <Table className="overflow-x-auto" dataSource={users} columns={columns} />
+      <Table
+        className="overflow-x-auto"
+        dataSource={users}
+        columns={columns}
+        pagination={{
+          current: pagination.current,
+          pageSize: pagination.pageSize,
+          total: pagination.total,
+        }}
+        onChange={handleTableChange}
+      />
     </section>
   );
 };

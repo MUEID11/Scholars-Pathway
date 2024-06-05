@@ -11,6 +11,7 @@ import Profile from "../PrivatePages/DashboardPages/Profile";
 import MyApplication from "../PrivatePages/DashboardPages/MyApplication";
 import MyReview from "../PrivatePages/DashboardPages/MyReview";
 import ManageUsers from "../PrivatePages/DashboardPages/ManageUsers";
+import AddScholarship from "../PrivatePages/DashboardPages/AddScholarship";
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: 'manageusers',
         element: <PrivateRoute><ManageUsers/></PrivateRoute>
+      },
+      {
+        path: 'addscholarship',
+        element: <PrivateRoute><AddScholarship/></PrivateRoute>
       }
     ],
   },

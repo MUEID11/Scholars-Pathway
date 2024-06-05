@@ -4,19 +4,19 @@ import { CgClose, CgMenu } from "react-icons/cg";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
-
+import dummyPhoto from "../../public/dummy450x450.jpg";
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const handleLogout = () => {
     logOut()
-    .then(()=> {
-        toast.success('User Logged Out')
-    })
-    .catch(error => {
-        console.log(error.message)
-    })
-  }
+      .then(() => {
+        toast.success("User Logged Out");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   const navlinks = (
     <>
       <>
@@ -35,7 +35,7 @@ const Navbar = () => {
           All Scholarships
         </NavLink>
         <NavLink
-          to="/dashboard"
+          to="/dashboard/profile"
           activeclassname="active"
           className="nav-link  py-1 mx-3 mt-2 text-gray-700 transition-colors duration-300 transform lg:mt-0 dark:text-gray-200 "
         >
@@ -114,7 +114,7 @@ const Navbar = () => {
                 <div className="w-10 rounded-full">
                   <img
                     alt="Tailwind CSS Navbar component"
-                    src={user?.photoURL}
+                    src={user?.photoURL ? user?.photoURL : dummyPhoto}
                   />
                 </div>
               </div>
@@ -123,13 +123,9 @@ const Navbar = () => {
                 className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
               >
                 <li>
-                <a className="justify-between">
-            {user?.displayName}
-            <span className="badge">Role</span>
-          </a>
-                </li>
-                <li>
-                  <a  onClick={handleLogout}>Logout</a>
+                  <a className="justify-between">
+                    {user?.displayName ? user?.displayName : `User Name`}
+                  </a>
                 </li>
               </ul>
             </div>
