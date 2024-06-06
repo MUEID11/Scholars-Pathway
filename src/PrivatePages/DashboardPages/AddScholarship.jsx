@@ -1,9 +1,16 @@
-import React from "react";
+import { useForm } from "react-hook-form";
+
 
 const AddScholarship = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
   return (
     <div className="container mx-auto p-2">
-        <h1 className="text-xl font-bold text-slate-600 mb-2">Add Scholarship</h1>
+      <h1 className="text-xl font-bold text-slate-600 mb-2">Add Scholarship</h1>
       <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="form-control">
           <label className="label">
@@ -29,7 +36,10 @@ const AddScholarship = () => {
           <label className="label">
             <span className="label-text">University Image/Logo</span>
           </label>
-          <input type="file" className="file-input file-input-bordered w-full" />
+          <input
+            type="file"
+            className="file-input file-input-bordered w-full"
+          />
         </div>
         <div className="form-control">
           <label className="label">

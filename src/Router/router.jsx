@@ -12,6 +12,8 @@ import MyApplication from "../PrivatePages/DashboardPages/MyApplication";
 import MyReview from "../PrivatePages/DashboardPages/MyReview";
 import ManageUsers from "../PrivatePages/DashboardPages/ManageUsers";
 import AddScholarship from "../PrivatePages/DashboardPages/AddScholarship";
+import AdminRoute from "./AdminRoute";
+import AdminModerator from "./AdminModerator";
 
 export const router = createBrowserRouter([
   {
@@ -39,32 +41,53 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    errorElement: <Error/>,
+    errorElement: <Error />,
     element: (
       <PrivateRoute>
         <Dashboard />
       </PrivateRoute>
     ),
     children: [
-      { path: 'profile',
-      element: <PrivateRoute><Profile/></PrivateRoute>
+      {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'application',
-        element: <PrivateRoute><MyApplication /></PrivateRoute>
+        path: "application",
+        element: (
+          <PrivateRoute>
+            <MyApplication />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'myreviews',
-        element: <PrivateRoute><MyReview/></PrivateRoute>
+        path: "myreviews",
+        element: (
+          <PrivateRoute>
+            <MyReview />
+          </PrivateRoute>
+        ),
       },
       {
-        path: 'manageusers',
-        element: <PrivateRoute><ManageUsers/></PrivateRoute>
+        path: "manageusers",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
       {
-        path: 'addscholarship',
-        element: <PrivateRoute><AddScholarship/></PrivateRoute>
-      }
+        path: "addscholarship",
+        element: (
+          <AdminModerator>
+            <AddScholarship />
+          </AdminModerator>
+        ),
+      },
     ],
   },
 ]);
