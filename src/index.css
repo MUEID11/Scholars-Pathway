@@ -25,7 +25,7 @@
   width: 100%; /* Expand the border when NavLink is active */
 }
 .dashlinks.active {
-  background-color: #a37bff;
+  background-color: #aa86ff;
   color: white; /* Optionally change text color */
 }
 

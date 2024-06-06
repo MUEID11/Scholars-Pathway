@@ -20,7 +20,7 @@ const Review = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryFn: getReviews,
+    queryFn: async() => getReviews(),
     queryKey: ["allreviews"],
   });
 

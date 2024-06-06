@@ -8,49 +8,78 @@ const imagebbApiUrl = `https://api.imgbb.com/1/upload?key=${imagebbApiKey}`;
 const AddScholarship = () => {
   const {
     register,
-    handleSubmit, 
+    handleSubmit,
     reset,
     formState: { errors },
   } = useForm();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const onSubmit = async (data) => {
-    console.log(data);
-    //image upload to imagebb
-    const imageFile = { image: data.universityimage[0] };
-    const res = await axiosPublic.post(imagebbApiUrl, imageFile, {
-      headers: { "Content-Type": "multipart/form-data" },
-    });
-    console.log(res.data)
-    if (res.data.success) {
-      const formData = {
-        scholarshipName: data?.scholarshipname,
-        universityName: data?.universityname,
-        universityCountry: data?.universitycountry,
-        universityCity: data?.universitycity,
-        universityImage: res?.data?.data?.url,
-        worldRank: Number(data?.worldrank),
-        degree: data?.degree,
-        subjectCategory: data?.subjectcategory,
-        scholarshipType: data?.scholarshiptype,
-        applicationFees: parseInt(data?.fees),
-        serviceCharge: parseInt(data?.servicecharge),
-        postedOn: new Date(data?.postdate).getTime(),
-        deadLine: new Date(data?.deadline).getTime(),
-        contactEmail: data?.email,
-      };
-      console.log("here is your data", formData);
-      //send data to api
-      const scholarshipRes = await axiosSecure.post("/scholarship", formData);
-      console.log(scholarshipRes.data);
-      if (scholarshipRes.data.insertedId) {
-        Swal.fire({
-          title: "Scholarship added!",
-          text: "Scholarship added successfully!",
-          icon: "success",
-        });
-        reset();
+    try {
+      // Display processing alert
+      Swal.fire({
+        title: "Processing...",
+        text: "Please wait...",
+        icon: "info",
+        allowOutsideClick: false,
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });
+
+      // Upload image
+      const imageFile = { image: data.universityimage[0] };
+      const res = await axiosPublic.post(imagebbApiUrl, imageFile, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      // Close processing alert if upload is successful
+      Swal.close();
+
+      if (res.data.success) {
+        const formData = {
+          scholarshipName: data?.scholarshipname,
+          universityName: data?.universityname,
+          universityCountry: data?.universitycountry,
+          universityCity: data?.universitycity,
+          universityImage: res?.data?.data?.display_url,
+          worldRank: Number(data?.worldrank),
+          degree: data?.degree,
+          subjectCategory: data?.subjectcategory,
+          scholarshipType: data?.scholarshiptype,
+          applicationFees: parseInt(data?.fees),
+          serviceCharge: parseInt(data?.servicecharge),
+          postedOn: new Date(data?.postdate).getTime(),
+          deadLine: new Date(data?.deadline).getTime(),
+          contactEmail: data?.email,
+          discripiton: data?.discripiton,
+        };
+        console.log("here is your data", formData);
+        // Send data to API
+        const scholarshipRes = await axiosSecure.post("/scholarship", formData);
+        console.log(scholarshipRes.data);
+        if (scholarshipRes.data.insertedId) {
+          Swal.fire({
+            title: "Scholarship added!",
+            text: "Scholarship added successfully!",
+            icon: "success",
+          });
+          reset();
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "An error occurred. Please try again.",
+            icon: "error",
+          });
+        }
       }
+    } catch (error) {
+      // Close processing alert and show error alert
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred while uploading the image. Please try again.",
+        icon: "error",
+      });
     }
   };
 
@@ -59,7 +88,7 @@ const AddScholarship = () => {
       <h1 className="text-xl font-bold text-slate-600 mb-2">Add Scholarship</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="grid grid-cols-1 md:grid-cols-2 gap-4"
+        className="grid grid-cols-1 md:grid-cols-2 gap-1"
       >
         <div className="form-control">
           <label className="label">
@@ -287,8 +316,23 @@ const AddScholarship = () => {
             <span className="text-xs text-red-500">This field is required</span>
           )}
         </div>
-
         <div className="form-control md:col-span-2">
+          <label className="label">
+            <span className="label-text">Scholarship discription</span>
+          </label>
+          <input
+            name="discription"
+            {...register("discription", { required: true })}
+            type="discription"
+            placeholder="Scholarship discription"
+            className="input input-bordered w-full"
+          />
+          {errors.descripiton && (
+            <span className="text-xs text-red-500">This field is required</span>
+          )}
+        </div>
+
+        <div className="form-control md:col-span-2 mt-2">
           <button type="submit" className="btn bg-yellow-500 w-full">
             Submit
           </button>
