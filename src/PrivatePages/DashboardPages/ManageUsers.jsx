@@ -106,17 +106,17 @@ const ManageUsers = () => {
       render: (text, render) => {
         return (
           <div>
-            <select
+            <select defaultValue={render?.role}
               onChange={(e) => handleRole(render, e.target.value)}
               name="role"
             >
-              <option selected={render.role === "User"} value="User">
+              <option defaultValue={render.role === "User"} value="User">
                 User
               </option>
-              <option selected={render.role === "Moderator"} value="Moderator">
+              <option defaultValue={render.role === "Moderator"} value="Moderator">
                 Moderator
               </option>
-              <option selected={render.role === "Admin"} value="Admin">
+              <option defaultValue={render.role === "Admin"} value="Admin">
                 Admin
               </option>
             </select>

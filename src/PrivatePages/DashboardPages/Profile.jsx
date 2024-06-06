@@ -10,7 +10,6 @@ import { RiLoginBoxLine } from "react-icons/ri";
 
 const Profile = () => {
   const { user } = useAuth();
-  console.log("auth provider user", user);
   const axiosSecure = useAxiosSecure();
   const { data: loggedUser = {} } = useQuery({
     queryKey: [user?.email, "profile"],
