@@ -17,6 +17,7 @@ import AdminModerator from "./AdminModerator";
 import ScholarshipDetails from "../Pages/ScholarshipDetails";
 import ManageScholarship from "../PrivatePages/DashboardPages/ManageScholarship";
 import AppliedScholarship from "../PrivatePages/DashboardPages/AppliedScholarship";
+import UpdateScholarship from "../PrivatePages/UpdateScholarship";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,14 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <ScholarshipDetails />
           </PrivateRoute>
+        ),
+      },
+      {
+        path: "/updatescholarship/:id",
+        element: (
+          <AdminModerator>
+            <UpdateScholarship />
+          </AdminModerator>
         ),
       },
     ],

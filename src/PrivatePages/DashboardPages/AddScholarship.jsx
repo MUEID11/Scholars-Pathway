@@ -52,7 +52,7 @@ const AddScholarship = () => {
           postedOn: new Date(data?.postdate).getTime(),
           deadLine: new Date(data?.deadline).getTime(),
           contactEmail: data?.email,
-          descripton: data?.descripton,
+          description: data?.description,
         };
         console.log("here is your data", formData);
         // Send data to API

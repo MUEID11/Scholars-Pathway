@@ -84,6 +84,12 @@ const ScholarshipDetails = () => {
             </p>
           </div>
           <div>
+            <h3 className="font-medium text-lg">World Rank</h3>
+            <p className="flex items-center">
+             {scholarshipdetails?.worldRank}
+            </p>
+          </div>
+          <div>
             <h3 className="font-medium text-lg">Posted On</h3>
             <p>
               {new Date(scholarshipdetails?.postedOn).toLocaleDateString(
@@ -118,6 +124,10 @@ const ScholarshipDetails = () => {
           <div className="text-sm pr-2">
             <h3 className="font-medium text-lg">Description</h3>
             <p>{scholarshipdetails?.description}</p>
+          </div>
+          <div className="text-sm pr-2">
+            <h3 className="font-medium text-lg">Rating</h3>
+            <p>Rating</p>
           </div>
           <div className="text-sm pr-2">
             <h3 className="font-medium text-lg">Apply Now</h3>
