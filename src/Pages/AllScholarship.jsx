@@ -21,10 +21,16 @@ if(isLoading) return <Loading/>
         heading={`All scholarship`}
         subHeading={`Explore our comprehensive scholarship offerings today! From academic excellence to diverse fields of study, our scholarships cater to all students' needs. Don't miss out. Apply now!`}
       ></SectionTitle>
+      <div>
+        search implement korte hobe
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 m-2 sm:m-0">
       {
         scholarships.map(scholarship => <ScholarshipCard key={scholarship?._id} scholarship={scholarship}/>)
       }
+      </div>
+      <div>
+        pagination implement korte hobe
       </div>
     </div>
   );

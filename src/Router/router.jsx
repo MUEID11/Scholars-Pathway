@@ -14,6 +14,7 @@ import ManageUsers from "../PrivatePages/DashboardPages/ManageUsers";
 import AddScholarship from "../PrivatePages/DashboardPages/AddScholarship";
 import AdminRoute from "./AdminRoute";
 import AdminModerator from "./AdminModerator";
+import ScholarshipDetails from "../Pages/ScholarshipDetails";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+      {
+        path: '/scholarship/:id',
+        element: <ScholarshipDetails/>,
+      }
     ],
   },
   {
