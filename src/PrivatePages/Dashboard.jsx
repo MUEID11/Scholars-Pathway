@@ -73,7 +73,7 @@ const Dashboard = () => {
                       Add scholarship
                     </NavLink>
                     <NavLink
-                      to="/dashboard/myreviews"
+                      to="/dashboard/managescholarship"
                       className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                     >
                       <span>
@@ -82,7 +82,7 @@ const Dashboard = () => {
                       Manage Scholarship
                     </NavLink>
                     <NavLink
-                      to="/dashboard/myreviews"
+                      to="/dashboard/appliedscholarship"
                       className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                     >
                       <span>
@@ -100,7 +100,7 @@ const Dashboard = () => {
                       Manage Users
                     </NavLink>
                     <NavLink
-                      to="/dashboard/myreviews"
+                      to="/dashboard/allreviews"
                       className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                     >
                       <span>
@@ -130,7 +130,7 @@ const Dashboard = () => {
                       Add scholarship
                     </NavLink>
                     <NavLink
-                      to="/dashboard/myreviews"
+                      to="/dashboard/managescholarship"
                       className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                     >
                       <span>
@@ -139,7 +139,7 @@ const Dashboard = () => {
                       Manage Scholarship
                     </NavLink>
                     <NavLink
-                      to="/dashboard/myreviews"
+                      to="/dashboard/appliedApplication"
                       className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
                     >
                       <span>

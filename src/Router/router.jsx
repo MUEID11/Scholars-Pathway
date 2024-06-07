@@ -15,6 +15,8 @@ import AddScholarship from "../PrivatePages/DashboardPages/AddScholarship";
 import AdminRoute from "./AdminRoute";
 import AdminModerator from "./AdminModerator";
 import ScholarshipDetails from "../Pages/ScholarshipDetails";
+import ManageScholarship from "../PrivatePages/DashboardPages/ManageScholarship";
+import AppliedScholarship from "../PrivatePages/DashboardPages/AppliedScholarship";
 
 export const router = createBrowserRouter([
   {
@@ -39,9 +41,13 @@ export const router = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: '/scholarship/:id',
-        element: <ScholarshipDetails/>,
-      }
+        path: "/scholarship/:id",
+        element: (
+          <PrivateRoute>
+            <ScholarshipDetails />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -78,19 +84,35 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "manageusers",
-        element: (
-          <AdminRoute>
-            <ManageUsers />
-          </AdminRoute>
-        ),
-      },
-      {
         path: "addscholarship",
         element: (
           <AdminModerator>
             <AddScholarship />
           </AdminModerator>
+        ),
+      },
+      {
+        path: "managescholarship",
+        element: (
+          <AdminModerator>
+            <ManageScholarship />
+          </AdminModerator>
+        ),
+      },
+      {
+        path: "appliedscholarship",
+        element: (
+          <AdminModerator>
+            <AppliedScholarship />
+          </AdminModerator>
+        ),
+      },
+      {
+        path: "manageusers",
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
         ),
       },
     ],

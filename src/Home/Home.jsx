@@ -12,7 +12,7 @@ const Home = () => {
     queryKey: ["scholarship"],
     queryFn: async () => {
       const res = await axiosPublic.get("/scholarships");
-      return res.data;
+      return res.data.result;
     },
   });
   if (isLoading) return <Loading />;

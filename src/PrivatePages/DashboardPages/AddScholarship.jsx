@@ -52,7 +52,7 @@ const AddScholarship = () => {
           postedOn: new Date(data?.postdate).getTime(),
           deadLine: new Date(data?.deadline).getTime(),
           contactEmail: data?.email,
-          discripiton: data?.discripiton,
+          descripton: data?.descripton,
         };
         console.log("here is your data", formData);
         // Send data to API
@@ -234,6 +234,7 @@ const AddScholarship = () => {
           >
             <option value="">Select degree</option>
             <option>Diploma</option>
+            <option>MBBS</option>
             <option>Bachelor</option>
             <option>Masters</option>
           </select>
@@ -318,13 +319,13 @@ const AddScholarship = () => {
         </div>
         <div className="form-control md:col-span-2">
           <label className="label">
-            <span className="label-text">Scholarship discription</span>
+            <span className="label-text">Scholarship Description</span>
           </label>
           <input
-            name="discription"
-            {...register("discription", { required: true })}
-            type="discription"
-            placeholder="Scholarship discription"
+            name="description"
+            {...register("description", { required: true })}
+            type="description"
+            placeholder="Scholarship description"
             className="input input-bordered w-full"
           />
           {errors.descripiton && (
