@@ -3,7 +3,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { useParams } from "react-router-dom";
 import Loading from "../Components/Loading";
 import { BiDetail, BiDollar } from "react-icons/bi";
-import { useState } from "react";
+
 import Payment from "../PrivatePages/DashboardPages/Payment/Payment";
 
 const ScholarshipDetails = () => {
@@ -134,25 +134,25 @@ const ScholarshipDetails = () => {
             <p>Rating</p>
           </div>
           <div className="text-sm pr-2">
-            <h3 className="font-medium text-lg">Apply Now</h3>
+            <h3 className="font-medium text-lg">Apply For This Scholarship</h3>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <button
-              className="btn"
+              className="btn hover:bg-green-500 my-4"
               onClick={() => document.getElementById("my_modal_1").showModal()}
             >
-              Open Modal
+              Apply Now
             </button>
             <dialog id="my_modal_1" className="modal">
-              <div className="modal-box flex flex-col justify-center items-center h-full">
+              <div className="modal-box flex flex-col justify-center items-center h-1/2">
                 <div className="modal-action flex flex-col items-center w-full">
                   <Payment scholarshipdetails={scholarshipdetails}></Payment>
                   {/* Your component content */}
                 </div>
                 <button
-                  className="btn mt-auto"
+                  className="btn btn-sm my-3 text-red-600 bg-red-200 hover:bg-red-300"
                   onClick={() => document.getElementById("my_modal_1").close()}
                 >
-                  Close
+                  Cancle
                 </button>
               </div>
             </dialog>

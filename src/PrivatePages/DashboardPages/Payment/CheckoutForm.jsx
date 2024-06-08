@@ -3,15 +3,18 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import useAuth from "../../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import { ImSpinner10 } from "react-icons/im";
 
-const CheckoutForm = ({ total }) => {
+const CheckoutForm = ({ total, scholarshipdetails }) => {
   console.log(total);
   const [clientSecret, setClientSecret] = useState("");
   const [error, setError] = useState("");
+  const [processing, setProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+
   useEffect(() => {
     axiosSecure.post("/create-payment-intent", { price: total }).then((res) => {
       console.log(res.data.clientSecret);
@@ -20,6 +23,7 @@ const CheckoutForm = ({ total }) => {
   }, [axiosSecure, total]);
 
   const handleSubmit = async (event) => {
+    setProcessing(true);
     event.preventDefault();
     if (!stripe || !elements) {
       return;
@@ -52,13 +56,34 @@ const CheckoutForm = ({ total }) => {
       });
     if (confirmError) {
       console.log("confirm error");
-      toast.error(confirmError?.message)
+      setProcessing(false);
+      toast.error(confirmError?.message);
     } else {
       console.log("payment intent", paymentIntent);
     }
-    if(paymentIntent.status === "succeeded"){
-        document.getElementById("my_modal_1").close()
-        toast.success('Payment succesfull');   
+    if (paymentIntent.status === "succeeded") {
+      setProcessing(false);
+      const paymentInfo = {
+        ...scholarshipdetails,
+        scholarshipId: scholarshipdetails?._id,
+        paid: total,
+        transactionId: paymentIntent.id,
+        date: new Date(),
+        studentName: user?.displayName,
+        studentEmail: user?.email,
+        applicationStatus: 'pending',
+      }
+      delete paymentInfo?._id;
+      delete paymentInfo?.formData;
+      console.log(paymentInfo);
+      document.getElementById("my_modal_1").close();
+      toast.success("Payment succesfull");
+      try{
+        const{ data } = await axiosSecure.post('/applied', paymentInfo);
+        console.log(data)
+      }catch(error) {
+        console.log(error)
+      }
     }
   };
 
@@ -88,13 +113,22 @@ const CheckoutForm = ({ total }) => {
           />
         </div>
         <button
-          className="w-full py-2 px-4 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-violet-200 disabled:opacity-50"
+          className="w-full flex items-center justify-center py-2 px-4 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-violet-200 disabled:opacity-50"
           type="submit"
-          disabled={!stripe || !clientSecret}
+          disabled={!stripe || !clientSecret || processing}
         >
-          Pay
+          {processing ? (
+            <ImSpinner10 className="inline-flex items-center justify-center text-xl animate-spin" />
+          ) : (
+            `pay ${total}$`
+          )}
         </button>
         {error && <p className="text-red-600 text-center">{error}</p>}
+        {/* {transactionId && (
+          <p className="text-green-500 text-center">
+            Your transactionId is {transactionId}
+          </p>
+        )} */}
       </form>
     </div>
   );

@@ -7,14 +7,14 @@ const Payment = ({scholarshipdetails}) => {
     const total = parseInt(scholarshipdetails?.applicationFees + scholarshipdetails?.serviceCharge);
 
     return (
-        <div className="">
-            <div className="justify-center text-center space-y-4">
+        <div >
+            <div className="justify-center text-center space-y-2">
                 <h3 className="text-2xl font-semibold">Payment</h3>
                 <p>Pay to confirm your application</p>
             </div>
-            <div  className="">
+            <div>
                 <Elements stripe={stripPromise}>
-                <CheckoutForm total={total}></CheckoutForm>
+                <CheckoutForm total={total} scholarshipdetails={scholarshipdetails}></CheckoutForm>
                 </Elements>
             </div>
         </div>
