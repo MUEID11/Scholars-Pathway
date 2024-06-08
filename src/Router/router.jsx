@@ -18,6 +18,7 @@ import ScholarshipDetails from "../Pages/ScholarshipDetails";
 import ManageScholarship from "../PrivatePages/DashboardPages/ManageScholarship";
 import AppliedScholarship from "../PrivatePages/DashboardPages/AppliedScholarship";
 import UpdateScholarship from "../PrivatePages/UpdateScholarship";
+import Payment from "../PrivatePages/DashboardPages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +51,15 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "/payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
+      },
+      //admin & modarator can acccess this route
+      {
         path: "/updatescholarship/:id",
         element: (
           <AdminModerator>
@@ -59,6 +69,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/dashboard",
     errorElement: <Error />,
@@ -92,6 +103,7 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      //admin and modarator can access these routes
       {
         path: "addscholarship",
         element: (
@@ -116,6 +128,7 @@ export const router = createBrowserRouter([
           </AdminModerator>
         ),
       },
+      //admin only route
       {
         path: "manageusers",
         element: (

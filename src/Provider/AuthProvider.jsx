@@ -24,10 +24,11 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const logOut = () => {
+  const logOut = async() => {
     setLoading(true);
     console.log('somssa ki bhai?')
-    return signOut(auth);
+    localStorage.removeItem('access-token');
+    return await signOut(auth);
   };
   const updateUser = (name, photo) => {
     setLoading(true);

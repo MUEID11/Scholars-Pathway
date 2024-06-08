@@ -22,7 +22,7 @@ const useAxiosSecure = () => {
   //handle error status
   axiosSecure.interceptors.response.use(
     function (response) {
-      console.log("response from inrerceptor", response);
+      // console.log("response from inrerceptor", response);
       return response;
     },
     async (error) => {
