@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import { ImSpinner10 } from "react-icons/im";
 import Modal from "react-modal";
 import Swal from "sweetalert2";
+import useAdmin from "../../../Hooks/useAdmin";
+import useModerator from "../../../Hooks/useModerator";
 
 const CheckoutForm = ({ total, scholarshipdetails }) => {
   const [clientSecret, setClientSecret] = useState("");
@@ -17,7 +19,8 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-
+  const [isAdmin] = useAdmin();
+  const [isModerator] = useModerator();
   useEffect(() => {
     axiosSecure.post("/create-payment-intent", { price: total }).then((res) => {
       console.log(res.data.clientSecret);
@@ -92,9 +95,9 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
       sscResult: formData.get("sscResult"),
       hscResult: formData.get("hscResult"),
       studyGap: formData.get("studyGap"),
-      userName: user?.displayName,
+      applicantName: user?.displayName,
       userId: user?.uid,
-      userEmail: user?.email,
+      applicantEmail: user?.email,
       scholarshipId: scholarshipdetails?._id,
       date: new Date(),
     };
@@ -122,7 +125,7 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
         timer: 1000, // Show the message for 1 second
       }).then(() => {
         // Redirect to homepage after 1 second
-        window.location.href = "/";
+        window.location.href = "/dashboard/application";
       });
       document.getElementById("additionalInfoModal").style.display = "none";
     } catch (error) {
@@ -159,7 +162,7 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
         <button
           className="w-full flex items-center justify-center py-2 px-4 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-violet-200 disabled:opacity-50"
           type="submit"
-          disabled={!stripe || !clientSecret || processing}
+          disabled={!stripe || !clientSecret || processing || isAdmin || isModerator}
         >
           {processing ? (
             <ImSpinner10 className="inline-flex items-center justify-center text-xl animate-spin" />

@@ -221,7 +221,7 @@ const Dashboard = () => {
             <div className="lg:flex lg:items-center lg:justify-between">
               <div className="flex items-center justify-between">
                 <a className="sm:text-xl font-bold text-gray-500 p-1">
-                  <p>{user?.displayName}&apos Dashabord</p>
+                  <p>Dashabord of {user?.displayName} </p>
                 </a>
 
                 {/* Mobile menu button */}
