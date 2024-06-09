@@ -24,6 +24,25 @@
 .nav-link.active:before {
   width: 100%; /* Expand the border when NavLink is active */
 }
+.dashlinks {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  align-items: center;
+  color: #333; /* Change color as needed */
+  transition: background-color 0.3s ease;
+}
+
+.dashlinks:hover {
+  background-color: #f0f0f0; /* Change hover background color as needed */
+}
+
+.dashlinks span {
+  display: inline-block;
+  width: 30px; /* Adjust icon width as needed */
+}
 .dashlinks.active {
   background-color: #aa86ff;
   color: white; /* Optionally change text color */

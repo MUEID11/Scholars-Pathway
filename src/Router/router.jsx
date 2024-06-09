@@ -19,6 +19,7 @@ import ManageScholarship from "../PrivatePages/DashboardPages/ManageScholarship"
 import AppliedScholarship from "../PrivatePages/DashboardPages/AppliedScholarship";
 import UpdateScholarship from "../PrivatePages/UpdateScholarship";
 import Payment from "../PrivatePages/DashboardPages/Payment/Payment";
+import EditMyApplication from "../PrivatePages/DashboardPages/EditMyApplication";
 
 export const router = createBrowserRouter([
   {
@@ -92,6 +93,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyApplication />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "application/:id",
+        element: (
+          <PrivateRoute>
+            <EditMyApplication></EditMyApplication>
           </PrivateRoute>
         ),
       },

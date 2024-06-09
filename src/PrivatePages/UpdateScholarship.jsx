@@ -14,7 +14,11 @@ const UpdateScholarship = () => {
   } = useForm();
   const axiosSceure = useAxiosSecure();
   const { id } = useParams();
-  const { data: scholarshipdetails = {}, isLoading, refetch } = useQuery({
+  const {
+    data: scholarshipdetails = {},
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["datails", id],
     queryFn: async () => {
       try {
@@ -46,26 +50,29 @@ const UpdateScholarship = () => {
       contactEmail: data?.email,
       description: data?.description,
     };
-    try{
-        const result = await Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, update it!",
-          });
-          if (result) {
-            const res = await axiosSceure.patch(`/updatescholarship/${id}`, formData);
-            if (res.data?.modifiedCount) {
-              Swal.fire("Updated", "Your file has been updated.", "success");
-              refetch();
-              reset();
-            }
-          }
-    }catch(error){
-        console.log(error);
+    try {
+      const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, update it!",
+      });
+      if (result) {
+        const res = await axiosSceure.patch(
+          `/updatescholarship/${id}`,
+          formData
+        );
+        if (res.data?.modifiedCount) {
+          Swal.fire("Updated", "Your file has been updated.", "success");
+          refetch();
+          reset();
+        }
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

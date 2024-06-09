@@ -5,6 +5,7 @@ import Banner from "./Banner";
 import ContactUs from "./ContactUs";
 import Review from "./Review";
 import TopScholarship from "./TopScholarship";
+import BlogSection from "./BlogSection";
 
 const Home = () => {
   const axiosPublic = useAxiosPublic();
@@ -22,6 +23,7 @@ const Home = () => {
       <TopScholarship></TopScholarship>
       <Review></Review>
       <ContactUs></ContactUs>
+      <BlogSection></BlogSection>
     </div>
   );
 };

@@ -162,7 +162,9 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
         <button
           className="w-full flex items-center justify-center py-2 px-4 bg-violet-500 text-white font-semibold rounded-lg shadow-md hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 focus:ring-offset-violet-200 disabled:opacity-50"
           type="submit"
-          disabled={!stripe || !clientSecret || processing || isAdmin || isModerator}
+          disabled={
+            !stripe || !clientSecret || processing || isAdmin || isModerator
+          }
         >
           {processing ? (
             <ImSpinner10 className="inline-flex items-center justify-center text-xl animate-spin" />
@@ -217,7 +219,6 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
             <select name="gender" className="select select-bordered" required>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
-              <option value="Other">Other</option>
             </select>
           </div>
           <div className="form-control">
@@ -226,6 +227,7 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
               <option value="Diploma">Diploma</option>
               <option value="Bachelor">Bachelor</option>
               <option value="Masters">Masters</option>
+              <option value="Masters">MBBS</option>
             </select>
           </div>
           <div className="form-control">

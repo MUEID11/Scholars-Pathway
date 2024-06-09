@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import { FaGoogle } from "react-icons/fa6";
+import SocialLogin from "./SocialLogin";
 const Login = () => {
   //task remain: social login and setting user to data base
   const navigate = useNavigate();
@@ -29,7 +31,6 @@ const Login = () => {
       toast.error(error.message);
     }
   };
-
   return (
     <div
       className="px-6 container mx-auto"
@@ -117,15 +118,11 @@ const Login = () => {
                   >
                     Sign In
                   </button>
+                 
                 </div>
               </form>
               <hr className="my-6" />
-              <div>
-                <button className="btn bg-violet-500 sm:btn-md btn-sm w-full flex items-center justify-center text-white">
-                  Sign In With <PiXLogoBold />
-                </button>
-              </div>
-
+                <SocialLogin></SocialLogin>
               <div className="mt-6">
                 <Link
                   to="/register"

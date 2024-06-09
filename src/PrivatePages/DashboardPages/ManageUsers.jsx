@@ -7,6 +7,7 @@ import { useState } from "react";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
+  const [sortByRole, setSortByRole] = useState("");
   //handle pagination
   const [pagination, setPagination] = useState({
     current: 1,
@@ -17,12 +18,12 @@ const ManageUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `/users?current=${pagination?.current}&pageSize=${pagination?.pageSize}`
+        `/users?current=${pagination?.current}&pageSize=${pagination?.pageSize}&role=${sortByRole}`
       );
-      setPagination({...pagination, total: res.data.total})
-      return  res.data.result;
+      setPagination({ ...pagination, total: res.data.total });
+      return res.data.result;
     },
-    queryKey: ["users", pagination],
+    queryKey: ["users", pagination, sortByRole],
   });
   const handleDeleteUser = (eachUser) => {
     if (eachUser.role === "Admin") {
@@ -84,9 +85,15 @@ const ManageUsers = () => {
       }
     });
   };
-
+  const handleSortByRole = (role) => {
+    setSortByRole(role);
+  };
   const handleTableChange = (pagination) => {
-    setPagination({...pagination, current: pagination?.current, pageSize: pagination?.pageSize});
+    setPagination({
+      ...pagination,
+      current: pagination?.current,
+      pageSize: pagination?.pageSize,
+    });
   };
   const columns = [
     {
@@ -106,14 +113,19 @@ const ManageUsers = () => {
       render: (text, render) => {
         return (
           <div>
-            <select defaultValue={render?.role}
+            <select
+              defaultValue={render?.role}
               onChange={(e) => handleRole(render, e.target.value)}
+              disabled={render?.role === "Admin"}
               name="role"
             >
               <option defaultValue={render.role === "User"} value="User">
                 User
               </option>
-              <option defaultValue={render.role === "Moderator"} value="Moderator">
+              <option
+                defaultValue={render.role === "Moderator"}
+                value="Moderator"
+              >
                 Moderator
               </option>
               <option defaultValue={render.role === "Admin"} value="Admin">
@@ -148,7 +160,18 @@ const ManageUsers = () => {
             {pagination?.total} users
           </span>
         </div>
-        <div className="mr-24">Sorting user</div>
+        <div className="mr-24 text-sm">
+          <select
+            value={sortByRole}
+            onChange={(e) => handleSortByRole(e.target.value)}
+            className="px-3 py-1 border rounded-md"
+          >
+            <option value="">Sort By Role</option>
+            <option value="User">User</option>
+            <option value="Moderator">Moderator</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
       </div>
       <Table
         className="overflow-x-auto"

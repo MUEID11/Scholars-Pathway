@@ -1,15 +1,16 @@
 import {
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
   updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Authentication/firebase.config";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
-
-
+const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -24,10 +25,14 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const logOut = async() => {
+  const signInWithGoogle = () => {
     setLoading(true);
-    console.log('somssa ki bhai?')
-    localStorage.removeItem('access-token');
+    return signInWithPopup(auth, googleProvider);
+  };
+  const logOut = async () => {
+    setLoading(true);
+    console.log("somssa ki bhai?");
+    localStorage.removeItem("access-token");
     return await signOut(auth);
   };
   const updateUser = (name, photo) => {
@@ -38,21 +43,20 @@ const AuthProvider = ({ children }) => {
     });
   };
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async(currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      if(currentUser){
-        const userInfo = {email: currentUser?.email}
-        try{
-        const res =  await axiosPublic.post('/jwt',userInfo )
-        if(res.data.token){
-          localStorage.setItem('access-token', res.data.token)
+      if (currentUser) {
+        const userInfo = { email: currentUser?.email };
+        try {
+          const res = await axiosPublic.post("/jwt", userInfo);
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+          }
+        } catch (error) {
+          console.log(error.message);
         }
-           
-        }catch(error){
-          console.log(error.message)
-        }
-      }else{
-        localStorage.removeItem('access-token')
+      } else {
+        localStorage.removeItem("access-token");
       }
       console.log(currentUser);
       setLoading(false);
@@ -66,6 +70,7 @@ const AuthProvider = ({ children }) => {
     setUser,
     logIn,
     updateUser,
+    signInWithGoogle,
     logOut,
   };
   return (

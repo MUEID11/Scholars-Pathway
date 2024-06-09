@@ -54,10 +54,7 @@ const Dashboard = () => {
               <div className="flex flex-col items-center justify-center sm:font-medium space-y-2">
                 {isAdmin ? (
                   <div className="tracking-tighter">
-                    <NavLink
-                      to="/dashboard/profile"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                    <NavLink to="/dashboard/profile" className="dashlinks">
                       <span>
                         <BsPerson className="mr-4" />
                       </span>{" "}
@@ -65,7 +62,7 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                       to="/dashboard/addscholarship"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                      className="dashlinks"
                     >
                       <span>
                         <MdOutlineContactMail className="mr-4" />
@@ -74,7 +71,7 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                       to="/dashboard/managescholarship"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                      className="dashlinks"
                     >
                       <span>
                         <SiSemanticscholar className="mr-4" />
@@ -83,26 +80,20 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                       to="/dashboard/appliedscholarship"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                      className="dashlinks"
                     >
                       <span>
                         <IoDocumentsOutline className="mr-4" />
                       </span>
                       Manage Applied Applications
                     </NavLink>
-                    <NavLink
-                      to="/dashboard/manageusers"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                    <NavLink to="/dashboard/manageusers" className="dashlinks">
                       <span>
                         <TbUsersGroup className="mr-4" />
                       </span>
                       Manage Users
                     </NavLink>
-                    <NavLink
-                      to="/dashboard/allreviews"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                    <NavLink to="/dashboard/allreviews" className="dashlinks">
                       <span>
                         <BiComment className="mr-4" />
                       </span>
@@ -111,10 +102,7 @@ const Dashboard = () => {
                   </div>
                 ) : isModerator ? (
                   <div className="tracking-tighter">
-                    <NavLink
-                      to="/dashboard/profile"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                    <NavLink to="/dashboard/profile" className="dashlinks">
                       <span>
                         <BsPerson className="mr-4" />
                       </span>{" "}
@@ -122,7 +110,7 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                       to="/dashboard/addscholarship"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                      className="dashlinks"
                     >
                       <span>
                         <MdOutlineContactMail className="mr-4" />
@@ -131,7 +119,7 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                       to="/dashboard/managescholarship"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                      className="dashlinks"
                     >
                       <span>
                         <SiSemanticscholar className="mr-4" />
@@ -140,17 +128,14 @@ const Dashboard = () => {
                     </NavLink>
                     <NavLink
                       to="/dashboard/appliedApplication"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
+                      className="dashlinks"
                     >
                       <span>
                         <IoDocumentsOutline className="mr-4" />
                       </span>
                       Manage Applied Applications
                     </NavLink>
-                    <NavLink
-                      to="/dashboard/myreviews"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                    <NavLink to="/dashboard/myreviews" className="dashlinks">
                       <span>
                         <BiComment className="mr-4" />
                       </span>
@@ -158,35 +143,26 @@ const Dashboard = () => {
                     </NavLink>
                   </div>
                 ) : (
-                  <>
-                    <NavLink
-                      to="/dashboard/profile"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                  <div className="tracking-tighter">
+                    <NavLink to="/dashboard/profile" className="dashlinks">
                       <span>
-                        <BsPerson className="mr-4" />
+                        <IoDocumentsOutline className="mr-4" />
                       </span>{" "}
                       My Profile
                     </NavLink>
-                    <NavLink
-                      to="/dashboard/application"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                    <NavLink to="/dashboard/application" className="dashlinks">
                       <span>
-                        <MdOutlineContactMail className="mr-4" />
+                        <TbUsersGroup className="mr-4" />
                       </span>
-                      My Application
+                      My applications
                     </NavLink>
-                    <NavLink
-                      to="/dashboard/myreviews"
-                      className="dashlinks w-full p-2 sm:p-4 rounded-md text-left flex items-center "
-                    >
+                    <NavLink to="/dashboard/myreviews" className="dashlinks">
                       <span>
                         <BiComment className="mr-4" />
                       </span>
-                      My review
+                      My Reviews
                     </NavLink>
-                  </>
+                  </div>
                 )}
               </div>
               <hr className="my-6" />
@@ -205,7 +181,7 @@ const Dashboard = () => {
           <div className="p-8">
             <button
               onClick={handleLogout}
-              className="bg-violet-400 p-2 sm:p-4 rounded flex items-center justify-center font-semibold w-full"
+              className="bg-violet-400 p-2 sm:p-4 rounded flex items-center justify-center font-semibold w-full text-white"
             >
               <span>
                 <BiLogOut className="mr-4" />
