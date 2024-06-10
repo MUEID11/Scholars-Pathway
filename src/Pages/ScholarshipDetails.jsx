@@ -5,8 +5,14 @@ import Loading from "../Components/Loading";
 import { BiDetail, BiDollar } from "react-icons/bi";
 
 import Payment from "../PrivatePages/DashboardPages/Payment/Payment";
+import CarosuleReview from "../Components/CarosuleReview";
+import { Tooltip } from "antd";
+import useAdmin from "../Hooks/useAdmin";
+import useModerator from "../Hooks/useModerator";
 
 const ScholarshipDetails = () => {
+  const [isAdmin] = useAdmin();
+  const [isModerator] = useModerator();
   const axiosSceure = useAxiosSecure();
   const { id } = useParams();
   const { data: scholarshipdetails = {}, isLoading } = useQuery({
@@ -14,7 +20,7 @@ const ScholarshipDetails = () => {
     queryFn: async () => {
       try {
         const res = await axiosSceure.get(`/scholarship/${id}`);
-        return res.data;
+        return res.data.result;
       } catch (error) {
         console.log(error.message);
         throw error;
@@ -129,19 +135,20 @@ const ScholarshipDetails = () => {
             <h3 className="font-medium text-lg">Description</h3>
             <p>{scholarshipdetails?.description}</p>
           </div>
-          <div className="text-sm pr-2">
-            <h3 className="font-medium text-lg">Rating</h3>
-            <p>Rating</p>
-          </div>
+
           <div className="text-sm pr-2">
             <h3 className="font-medium text-lg">Apply For This Scholarship</h3>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <button
-              className="btn hover:bg-green-500 my-4"
-              onClick={() => document.getElementById("my_modal_1").showModal()}
-            >
-              Apply Now
-            </button>
+            <Tooltip title={isAdmin || isModerator ? "Only users can buy scholarship" : ''}>
+              <button
+                className="btn hover:bg-green-500 my-4"
+                onClick={() =>
+                  document.getElementById("my_modal_1").showModal()
+                }
+              >
+                Apply Now
+              </button>
+            </Tooltip>
             <dialog id="my_modal_1" className="modal">
               <div className="modal-box flex flex-col justify-center items-center h-1/2">
                 <div className="modal-action flex flex-col items-center w-full">
@@ -156,9 +163,11 @@ const ScholarshipDetails = () => {
                 </button>
               </div>
             </dialog>
+            <div></div>
           </div>
         </div>
       </div>
+      <CarosuleReview id={id}></CarosuleReview>
     </div>
   );
 };

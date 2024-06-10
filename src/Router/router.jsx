@@ -20,6 +20,9 @@ import AppliedScholarship from "../PrivatePages/DashboardPages/AppliedScholarshi
 import UpdateScholarship from "../PrivatePages/UpdateScholarship";
 import Payment from "../PrivatePages/DashboardPages/Payment/Payment";
 import EditMyApplication from "../PrivatePages/DashboardPages/EditMyApplication";
+import ReviewScholarship from "../PrivatePages/ReviewScholarship";
+import ManageReviews from "../PrivatePages/DashboardPages/ManageReviews";
+import Statistics from "../PrivatePages/Statistics";
 
 export const router = createBrowserRouter([
   {
@@ -97,10 +100,18 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "application/:id",
+        path: "editapplication/:id",
         element: (
           <PrivateRoute>
             <EditMyApplication></EditMyApplication>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "review/:scholarshipId",
+        element: (
+          <PrivateRoute>
+            <ReviewScholarship />
           </PrivateRoute>
         ),
       },
@@ -146,6 +157,20 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "chart",
+        element: (
+          <AdminRoute>
+            <Statistics />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: 'managereviews',
+        element: <AdminModerator>
+          <ManageReviews></ManageReviews>
+        </AdminModerator>
+      }
     ],
   },
 ]);

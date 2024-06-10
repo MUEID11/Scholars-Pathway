@@ -207,9 +207,9 @@ const MyApplication = () => {
         return (
           <div>
             <Tooltip title="add review">
-              <button>
+              <Link to={`/dashboard/review/${render?.scholarshipId}`}>
                 <MdRateReview />
-              </button>
+              </Link>
             </Tooltip>
           </div>
         );
@@ -232,7 +232,7 @@ const MyApplication = () => {
               {/* <button onClick={()=>handleEdit(render?._id)}>
                 <RiEdit2Line className="text-lg text-green-600" />
               </button> */}
-              <Link to={`/dashboard/application/${render?._id}`}>
+              <Link to={`/dashboard/editapplication/${render?._id}`}>
                 <RiEdit2Line className="text-lg text-green-600" />
               </Link>
             </Tooltip>

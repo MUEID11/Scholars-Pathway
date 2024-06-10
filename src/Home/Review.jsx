@@ -1,6 +1,4 @@
-import React from "react";
 import SectionTitle from "../Components/SectionTitle";
-import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import "@smastrom/react-rating/style.css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,11 +6,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 
 const Review = () => {
+  const axiosPublic = useAxiosPublic();
   const getReviews = async () => {
-    const { data } = await axios(`${import.meta.env.VITE_API_URL}/reviews`);
-    return data;
+    const { data } = await axiosPublic.get(`/reviews`);
+    return data?.result;
   };
 
   const {
@@ -20,10 +20,9 @@ const Review = () => {
     isLoading,
     isError,
   } = useQuery({
-    queryFn: async() => getReviews(),
+    queryFn: async () => getReviews(),
     queryKey: ["allreviews"],
   });
-
   if (isLoading) {
     return <h1>Loading.....</h1>;
   }
@@ -62,47 +61,51 @@ const Review = () => {
               clickable: true,
             }}
             modules={[Pagination]}
-            className="mySwiper"
+            className="mySwiper mt-6"
           >
-            {reviews.map((review, idx) => (
-              <SwiperSlide key={idx}>
-                <div
-                  className={`relative flex flex-col justify-between w-full m-4 p-4 sm:p-8 bg-white rounded-xl shadow-lg dark:bg-gray-800 my-10 ${
-                    idx % 2 === 0
-                      ? "bg-violet-200"
-                      : "bg-white"
-                  }`}
-                >
-                  <p className="leading-loose text-gray-800 dark:text-gray-400 flex-grow">
-                    {review.reviewer_comments}
-                  </p>
-                  <div className="flex items-center mt-6 -mx-2">
+            {reviews?.map((review) => (
+              <SwiperSlide key={review?._id}>
+                <div className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                  <div className="flex justify-center -mt-16 md:justify-end">
                     <img
-                      className="object-cover mx-2 rounded-full w-14 h-14"
-                      src={review.reviewer_image}
-                      alt={review.name}
+                      className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400"
+                      alt="Testimonial avatar"
+                      src={review?.applicantPhoto}
                     />
-                    <div className="mx-2 py-8">
-                      <h1 className="font-semibold text-gray-800 dark:text-white">
-                        {review?.reviewer_name}
-                      </h1>
-                      <span className="text-sm text-gray-700 dark:text-gray-400">
-                        Date: {review?.review_date}
-                      </span>
-                    </div>
                   </div>
-                  <div
-                    className={`absolute w-5/6 rounded-lg p-6 -bottom-8 shadow-md flex items-center justify-center ${
-                      idx % 2 !== 0
-                        ? " bg-violet-200"
-                        : "bg-white"
-                    }`}
-                  >
+
+                  <h2 className="mt-2 text-xl font-semibold text-gray-800 dark:text-white md:mt-0">
+                    {review?.scholarshipName}
+                  </h2>
+
+                  {/* Additional fields */}
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">
+                    University Name: {`${review?.universityName}`}
+                  </p>
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">
+                    Date: {`${review?.reviewDate}`}
+                  </p>
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">
                     <Rating
                       style={{ maxWidth: 180 }}
-                      value={review?.rating_point}
+                      value={review?.rating}
                       readOnly
                     />
+                  </p>
+
+                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-200">
+                    {`${review?.comment}`}
+                  </p>
+
+                  <div className="flex justify-end mt-4">
+                    <a
+                      href="#"
+                      className="text-lg font-medium text-blue-600 dark:text-blue-300"
+                      tabIndex="0"
+                      role="link"
+                    >
+                      Reviewer Name: {review.applicantName}
+                    </a>
                   </div>
                 </div>
               </SwiperSlide>

@@ -10,7 +10,7 @@ import BlogSection from "./BlogSection";
 const Home = () => {
   const axiosPublic = useAxiosPublic();
   const { data: scholarships = [], isLoading } = useQuery({
-    queryKey: ["scholarship"],
+    queryKey: ["scholarships"],
     queryFn: async () => {
       const res = await axiosPublic.get("/scholarships");
       return res.data.result;

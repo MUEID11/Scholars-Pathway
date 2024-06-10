@@ -93,11 +93,17 @@ const Dashboard = () => {
                       </span>
                       Manage Users
                     </NavLink>
-                    <NavLink to="/dashboard/allreviews" className="dashlinks">
+                    <NavLink to="/dashboard/managereviews" className="dashlinks">
                       <span>
                         <BiComment className="mr-4" />
                       </span>
                       All Review
+                    </NavLink>
+                    <NavLink to="/dashboard/chart" className="dashlinks">
+                      <span>
+                        <BiComment className="mr-4" />
+                      </span>
+                      Statistics
                     </NavLink>
                   </div>
                 ) : isModerator ? (

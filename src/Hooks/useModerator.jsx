@@ -4,9 +4,10 @@ import useAxiosSecure from "./useAxiosSecure";
 
 const useModerator = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+  const { user,loading } = useAuth();
   const { data: isModerator, isLoading: isModeratorLoading } = useQuery({
     queryKey: [user?.email, "isModerator"],
+    enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/moderator`);
       console.log(res.data);

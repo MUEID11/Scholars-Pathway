@@ -3,6 +3,7 @@ import SectionTitle from "../Components/SectionTitle";
 import Loading from "../Components/Loading";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { Link } from "react-router-dom";
+import ShowReviewsById from "../Components/ShowReviewsById";
 
 const TopScholarship = () => {
   const axiosPublic = useAxiosPublic();
@@ -20,10 +21,9 @@ const TopScholarship = () => {
     queryFn: fetchScholarships,
   });
 
-
-
+  console.log(scholarshipsData, "scholarship data")
   if (isLoading) return <Loading />;
-
+  
   return (
     <div>
       <SectionTitle
@@ -33,7 +33,7 @@ const TopScholarship = () => {
       <div className="grid lg:grid-cols-2 gap-12">
         {/* Display scholarships */}
         {scholarshipsData.map((scholarship) => (
-          <div key={scholarship.id}>
+          <div key={scholarship?._id}>
             <div className="max-w-2xl min-h-[600px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
               <img
                 className="object-cover w-full h-64"
@@ -50,7 +50,7 @@ const TopScholarship = () => {
                     tabIndex="0"
                     role="link"
                   >
-                    {scholarship.scholarshipName}
+                    {scholarship?.scholarshipName}
                   </div>
                   <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
                     {scholarship?.description}
@@ -76,13 +76,17 @@ const TopScholarship = () => {
                         tabIndex="0"
                         role="link"
                       >
-                        {scholarship?.universityName}
+                        {`${scholarship?.universityName}`}
                       </div>
                     </div>
                     <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
                      Scholarship category: {scholarship?.scholarshipType}
                     </span>
+                    
                   </div>
+                  <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
+                     <ShowReviewsById id={scholarship?._id}/>
+                    </span>
                 </div>
               </div>
             </div>

@@ -7,23 +7,27 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useState } from "react";
 
 const AllScholarship = () => {
-  // State to manage pagination
-  const [pagination, setPagination] = useState({
-    current: 1, // Current page
-    itemsPerPage: 6, // Number of items per page
-    total: 0, // Total number of items
-  });
-
   const axiosPublic = useAxiosPublic();
 
-  // React Query hook to fetch scholarships data
-  const { data: scholarships = [], isLoading } = useQuery({
-    queryKey: ["scholarships", pagination], // Refetch data when pagination state changes
+  const [pagination, setPagination] = useState({
+    current: 1,
+    itemsPerPage: 6,
+    total: 0,
+  });
+  const [searchInput, setSearchInput] = useState("");
+  const [searchText, setSearchText] = useState("");
+
+  const {
+    data: scholarships = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["scholarships", pagination, searchText],
     queryFn: async () => {
       const res = await axiosPublic.get(
-        `/scholarships?current=${pagination.current}&pageSize=${pagination.itemsPerPage}`
+        `/scholarships?current=${pagination.current}&pageSize=${pagination.itemsPerPage}&searchText=${searchText}`
       );
-      // Update total number of items after fetching data
+
       setPagination((prev) => ({ ...prev, total: res.data.total }));
       return res.data.result;
     },
@@ -31,15 +35,26 @@ const AllScholarship = () => {
 
   if (isLoading) return <Loading />;
 
-  // Calculate total number of pages
   const totalPages = Math.ceil(pagination.total / pagination.itemsPerPage);
-
-  // Create an array for pagination buttons
   const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-  // Handle page change
   const handlePageChange = (page) => {
     setPagination((prev) => ({ ...prev, current: page }));
+  };
+
+  const handleSearchInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSearchClick = () => {
+    setSearchText(searchInput);
+    setPagination((prev) => ({ ...prev, current: 1 })); // Reset to first page on search
+  };
+
+  const handleRefreshClick = () => {
+    setSearchText(""); // Clear the search text
+    setSearchInput("");
+    refetch(); // Refetch the data
   };
 
   return (
@@ -48,12 +63,40 @@ const AllScholarship = () => {
         heading="All scholarship"
         subHeading="Explore our comprehensive scholarship offerings today! From academic excellence to diverse fields of study, our scholarships cater to all students' needs. Don't miss out. Apply now!"
       />
-      <div>search implement korte hobe</div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 m-2 sm:m-0">
-        {scholarships.map((scholarship) => (
-          <ScholarshipCard key={scholarship?._id} scholarship={scholarship} />
-        ))}
+      <div>
+        <div className="my-6">
+          <input
+            type="text"
+            value={searchInput}
+            onChange={handleSearchInputChange}
+            className="input input-bordered input-sm"
+            placeholder="Search by University or Scholarship Name"
+          />
+          <button
+            onClick={handleSearchClick}
+            className="btn btn-sm ml-2 bg-violet-300 text-violet-700"
+          >
+            Search
+          </button>
+        </div>
       </div>
+      {scholarships.length === 0 ? (
+        <div className="flex flex-col items-center justify-center text-center text-gray-500">
+          No scholarships found
+          <button
+            onClick={handleRefreshClick}
+            className="mt-2 text-blue-500 underline"
+          >
+            See All
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 m-2 sm:m-0">
+          {scholarships.map((scholarship) => (
+            <ScholarshipCard key={scholarship?._id} scholarship={scholarship} />
+          ))}
+        </div>
+      )}
       <div>
         <div className="flex justify-center mt-12">
           <button
