@@ -5,6 +5,8 @@ import { Button, Table } from "antd";
 import { useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import Loading from "../../Components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const ManageReviews = () => {
   const axiosSecure = useAxiosSecure();
@@ -55,7 +57,7 @@ const ManageReviews = () => {
     }
   };
   if (isLoading) {
-    return <h1>Loading.....</h1>;
+    return <Loading/>;
   }
   if (isError) {
     return <h1>Error loading reviews.</h1>;
@@ -98,6 +100,9 @@ const ManageReviews = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Manage Reviews</title>
+      </Helmet>
       <Table
         dataSource={reviews}
         columns={columns}

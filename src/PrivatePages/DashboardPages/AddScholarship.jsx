@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 const imagebbApiKey = import.meta.env.VITE_IMAGEBB_API_KEY;
 console.log(imagebbApiKey);
 const imagebbApiUrl = `https://api.imgbb.com/1/upload?key=${imagebbApiKey}`;
@@ -85,6 +86,9 @@ const AddScholarship = () => {
 
   return (
     <div className="container mx-auto p-2">
+      <Helmet>
+        <title>Payment</title>
+      </Helmet>
       <h1 className="text-xl font-bold text-slate-600 mb-2">Add Scholarship</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}

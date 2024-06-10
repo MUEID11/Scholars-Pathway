@@ -11,6 +11,7 @@ import { MdRateReview } from "react-icons/md";
 import Loading from "../../Components/Loading";
 import Swal from "sweetalert2";
 import { RiEdit2Line } from "react-icons/ri";
+import { Helmet } from "react-helmet-async";
 
 const MyApplication = () => {
   const axiosSecure = useAxiosSecure();
@@ -220,6 +221,9 @@ const MyApplication = () => {
       render: (text, render) => {
         return (
           <div className="space-x-6 flex items-center">
+             <Helmet>
+        <title>My application</title>
+      </Helmet>
             <Tooltip title="View Details">
               <button
                 onClick={() => showDetails(render?._id)}

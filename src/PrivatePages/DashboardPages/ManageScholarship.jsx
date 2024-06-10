@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { axiosSecure } from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const ManageScholarship = () => {
   const axiosPublic = useAxiosPublic();
@@ -112,6 +113,9 @@ const ManageScholarship = () => {
   ];
   return (
     <div>
+       <Helmet>
+        <title>Manage Scholarship</title>
+      </Helmet>
       <Table
         dataSource={scholarships}
         columns={columns}

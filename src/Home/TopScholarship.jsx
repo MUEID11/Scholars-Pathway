@@ -13,17 +13,14 @@ const TopScholarship = () => {
     return res.data;
   };
 
-  const {
-    data: scholarshipsData = [],
-    isLoading,
-  } = useQuery({
-    queryKey: ["scholarships"],
+  const { data: scholarshipsData = [], isLoading } = useQuery({
+    queryKey: ["topscholarship"],
     queryFn: fetchScholarships,
   });
 
-  console.log(scholarshipsData, "scholarship data")
+  console.log(scholarshipsData, "scholarship data");
   if (isLoading) return <Loading />;
-  
+
   return (
     <div>
       <SectionTitle
@@ -34,7 +31,7 @@ const TopScholarship = () => {
         {/* Display scholarships */}
         {scholarshipsData.map((scholarship) => (
           <div key={scholarship?._id}>
-            <div className="max-w-2xl min-h-[600px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+            <div className="max-w-2xl min-h-[650px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
               <img
                 className="object-cover w-full h-64"
                 src={scholarship?.universityImage}
@@ -80,18 +77,22 @@ const TopScholarship = () => {
                       </div>
                     </div>
                     <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-                     Scholarship category: {scholarship?.scholarshipType}
+                      Scholarship category: {scholarship?.scholarshipType}
                     </span>
-                    
                   </div>
                   <span className="mx-1 text-xs text-gray-600 dark:text-gray-300">
-                     <ShowReviewsById id={scholarship?._id}/>
-                    </span>
+                    <ShowReviewsById id={scholarship?._id} />
+                  </span>
                 </div>
               </div>
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center items-center my-6">
+        <Link to="/all" className="btn bg-yellow-100 text-yellow-600">
+          View All Scholarship
+        </Link>
       </div>
     </div>
   );

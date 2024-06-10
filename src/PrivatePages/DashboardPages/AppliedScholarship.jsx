@@ -7,6 +7,7 @@ import { FcCancel } from "react-icons/fc";
 import { RiEdit2Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import Loading from "../../Components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const AppliedScholarship = () => {
   const axiosSecure = useAxiosSecure();
@@ -307,6 +308,9 @@ const AppliedScholarship = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Applied Applications</title>
+      </Helmet>
       {applies === 0 ? (
         <div className="flex flex-col justify-center items-center mt-6">
           <h2 className="text-2xl font-bold text-yellow-500">

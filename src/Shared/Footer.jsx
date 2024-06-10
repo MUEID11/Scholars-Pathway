@@ -93,23 +93,25 @@ const Footer = () => {
               className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
               aria-label="LinkedIn"
             >
-              <FaLinkedin/>
+              <FaLinkedin />
             </a>
 
             <a
-              href="#"
+              href="https://www.linkedin.com/in/mehedirangpur/"
+              target="_blank"
               className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
               aria-label="Facebook"
             >
-              <FaFacebook/>
+              <FaFacebook />
             </a>
 
             <a
-              href="#"
+              href="https://www.linkedin.com/in/mehedirangpur/"
+              target="_blank"
               className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
               aria-label="Github"
             >
-              <FaGithub/>
+              <FaGithub />
             </a>
           </div>
         </div>

@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
 import useAxiosPublic from "../Hooks/useAxiosPublic";
+import Loading from "../Components/Loading";
 
 const Review = () => {
   const axiosPublic = useAxiosPublic();
@@ -24,7 +25,7 @@ const Review = () => {
     queryKey: ["allreviews"],
   });
   if (isLoading) {
-    return <h1>Loading.....</h1>;
+    return <Loading/>;
   }
   if (isError) {
     return <h1>Error loading reviews.</h1>;

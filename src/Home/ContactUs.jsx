@@ -1,4 +1,4 @@
-import { BiPhone } from "react-icons/bi";
+
 import { MdEmail, MdPhone } from "react-icons/md";
 import { RiHomeOfficeFill } from "react-icons/ri";
 

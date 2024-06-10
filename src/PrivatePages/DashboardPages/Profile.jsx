@@ -7,6 +7,7 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 import { BiIdCard } from "react-icons/bi";
 import { TfiEmail } from "react-icons/tfi";
 import { RiLoginBoxLine } from "react-icons/ri";
+import { Helmet } from "react-helmet-async";
 
 const Profile = () => {
   const { user } = useAuth();
@@ -15,7 +16,6 @@ const Profile = () => {
     queryKey: [user?.email, "profile"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/profile/${user?.email}`);
-      console.log(res.data.data);
       return res.data;
     },
   });
@@ -28,6 +28,9 @@ const Profile = () => {
   const time = signIndate.toLocaleTimeString("en-US", { hour12: true });
   return (
     <div className="relative w-full max-w-sm sm:max-w-full sm:min-h-[calc(100vh-150px)] overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+       <Helmet>
+        <title>Profile</title>
+      </Helmet>
       <img
         className="object-cover object-center w-full h-56"
         src={user?.photoURL}

@@ -9,6 +9,7 @@ import CarosuleReview from "../Components/CarosuleReview";
 import { Tooltip } from "antd";
 import useAdmin from "../Hooks/useAdmin";
 import useModerator from "../Hooks/useModerator";
+import { Helmet } from "react-helmet-async";
 
 const ScholarshipDetails = () => {
   const [isAdmin] = useAdmin();
@@ -31,6 +32,9 @@ const ScholarshipDetails = () => {
 
   return (
     <div className="max-w-6xl mx-auto mt-6">
+      <Helmet>
+        <title>Scholarship details</title>
+      </Helmet>
       <h2 className="text-xl font-bold flex items-center">
         Scholarship Details <BiDetail className="ml-2" />
       </h2>
@@ -139,7 +143,11 @@ const ScholarshipDetails = () => {
           <div className="text-sm pr-2">
             <h3 className="font-medium text-lg">Apply For This Scholarship</h3>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
-            <Tooltip title={isAdmin || isModerator ? "Only users can buy scholarship" : ''}>
+            <Tooltip
+              title={
+                isAdmin || isModerator ? "Only users can buy scholarship" : ""
+              }
+            >
               <button
                 className="btn hover:bg-green-500 my-4"
                 onClick={() =>

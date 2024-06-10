@@ -7,6 +7,8 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
 import useAuth from "../../Hooks/useAuth";
+import Loading from "../../Components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const MyReview = () => {
   const { user } = useAuth();
@@ -28,7 +30,7 @@ const MyReview = () => {
   });
 
   if (isLoading) {
-    return <h1>Loading.....</h1>;
+    return <Loading />;
   }
   if (isError) {
     return <h1>Error loading reviews.</h1>;
@@ -36,6 +38,9 @@ const MyReview = () => {
 
   return (
     <div>
+       <Helmet>
+        <title>My Reviews</title>
+      </Helmet>
       <h3 className="text-2xl font-medium text-gray-600 text-center my-6">
         My reviews
       </h3>

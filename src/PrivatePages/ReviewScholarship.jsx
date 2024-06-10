@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
 import { Tooltip } from "antd";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const ReviewScholarship = () => {
   const { scholarshipId } = useParams();
@@ -54,6 +55,9 @@ console.log(scholarship)
 
   return (
     <div>
+       <Helmet>
+        <title>Manage Reviews</title>
+      </Helmet>
       <h2 className="text-2xl font-bold text-gray-600">Submit your review</h2>
       <form onSubmit={handleSubmit}>
         <div className="my-12">

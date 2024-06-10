@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { Table } from "antd";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
@@ -150,6 +151,9 @@ const ManageUsers = () => {
   ];
   return (
     <section className="container px-4 mx-auto">
+       <Helmet>
+        <title>Manage Users</title>
+      </Helmet>
       <div className="flex items-center gap-x-3 mb-6 justify-between">
         <div>
           <h2 className="text-lg font-medium text-gray-800 dark:text-white ">

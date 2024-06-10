@@ -3,7 +3,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { Rating } from "@smastrom/react-rating";
 
 const ShowReviewsById = ({ id }) => {
-  console.log(id, "nikhoj");
+
   const axiosPublic = useAxiosPublic();
 
   // Fetch reviews data

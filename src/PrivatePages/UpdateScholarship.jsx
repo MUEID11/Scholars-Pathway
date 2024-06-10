@@ -4,6 +4,7 @@ import useAxiosSecure from "../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../Components/Loading";
+import { Helmet } from "react-helmet-async";
 
 const UpdateScholarship = () => {
   const {
@@ -77,6 +78,9 @@ const UpdateScholarship = () => {
   };
   return (
     <div className="my-4">
+       <Helmet>
+                <title>Update</title>
+            </Helmet>
       <div className="container mx-auto p-2">
         <h1 className="text-xl font-bold text-slate-600 mb-2">
           Update Scholarship

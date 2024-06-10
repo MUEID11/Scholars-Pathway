@@ -2,12 +2,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginBg from "../../src/assets/LoginBg.jpg";
 import { useState } from "react";
 import { BiHide, BiShow } from "react-icons/bi";
-import { PiXLogoBold } from "react-icons/pi";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-import { FaGoogle } from "react-icons/fa6";
 import SocialLogin from "./SocialLogin";
 const Login = () => {
   //task remain: social login and setting user to data base

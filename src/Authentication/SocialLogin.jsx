@@ -1,6 +1,6 @@
 import { FaGoogle } from "react-icons/fa6";
 import useAuth from "../Hooks/useAuth";
-import useAxiosPublic, { axiosPublic } from "../Hooks/useAxiosPublic";
+import useAxiosPublic from "../Hooks/useAxiosPublic";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 

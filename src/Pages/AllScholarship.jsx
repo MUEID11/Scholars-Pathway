@@ -5,6 +5,7 @@ import useAxiosPublic from "../Hooks/useAxiosPublic";
 import ScholarshipCard from "../Components/ScholarshipCard";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const AllScholarship = () => {
   const axiosPublic = useAxiosPublic();
@@ -59,6 +60,9 @@ const AllScholarship = () => {
 
   return (
     <div className="container mx-auto -mt-6 sm:-mt-20">
+      <Helmet>
+        <title>All Scholarship</title>
+      </Helmet>
       <SectionTitle
         heading="All scholarship"
         subHeading="Explore our comprehensive scholarship offerings today! From academic excellence to diverse fields of study, our scholarships cater to all students' needs. Don't miss out. Apply now!"

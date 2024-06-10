@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const EditMyApplication = () => {
   const { id } = useParams();
@@ -9,8 +10,6 @@ const EditMyApplication = () => {
   console.log(id);
   const {
     data: appliedApplication,
-    isLoading,
-    refetch = {},
   } = useQuery({
     queryKey: ["appliedApplication"],
     queryFn: async () => {
@@ -59,6 +58,9 @@ const EditMyApplication = () => {
   console.log(appliedApplication);
   return (
     <div>
+      <Helmet>
+        <title>Edit Applications</title>
+      </Helmet>
       <h2 className="text-2xl font-bold  text-gray-600">edit application</h2>
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
         <form
