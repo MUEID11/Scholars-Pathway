@@ -175,7 +175,7 @@ const ScholarshipDetails = () => {
           </div>
         </div>
       </div>
-      <CarosuleReview id={id}></CarosuleReview>
+      <CarosuleReview id={id} className="z-0"></CarosuleReview>
     </div>
   );
 };

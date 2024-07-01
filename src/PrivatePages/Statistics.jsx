@@ -23,7 +23,7 @@ const Statistics = () => {
       </Helmet>
       <div>
         <h2 className="text-xl font-bold">User and application ratio:</h2>
-        <ResponsiveContainer width="60%" height={400}>
+        <ResponsiveContainer width="30%" height={400}>
           <PieChart>
             <Pie
               data={chartData}

@@ -187,6 +187,7 @@ const ManageUsers = () => {
           total: pagination.total,
         }}
         onChange={handleTableChange}
+        mobileBreakPoint={768}
       />
     </section>
   );

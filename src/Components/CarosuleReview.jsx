@@ -28,10 +28,7 @@ const CarouselReview = ({ id }) => {
 
   return (
     <div>
-      {/* Render average rating */}
-
-      {/* Render reviews in a carousel */}
-      <div className="mySwiper p-8">
+      <div className="mySwiper p-8 z-0">
         <Swiper
           modules={[Pagination]}
           breakpoints={{

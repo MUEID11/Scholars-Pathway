@@ -184,7 +184,7 @@ const CheckoutForm = ({ total, scholarshipdetails }) => {
         <h2 className="text-2xl font-semibold text-center text-violet-600 mb-4">
           Additional Information
         </h2>
-        <form onSubmit={handleAdditionalInfoSubmit} className="space-y-4">
+        <form onSubmit={handleAdditionalInfoSubmit} className="space-y-4 z-50">
           <div className="form-control">
             <label className="label">Phone Number</label>
             <input

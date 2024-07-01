@@ -221,9 +221,9 @@ const MyApplication = () => {
       render: (text, render) => {
         return (
           <div className="space-x-6 flex items-center">
-             <Helmet>
-        <title>My application</title>
-      </Helmet>
+            <Helmet>
+              <title>My application</title>
+            </Helmet>
             <Tooltip title="View Details">
               <button
                 onClick={() => showDetails(render?._id)}
@@ -257,7 +257,7 @@ const MyApplication = () => {
     },
   ];
   return (
-    <div>
+    <div className=" overflow-x-auto sm: max-w-screen">
       {applies === 0 ? (
         <div className="flex flex-col justify-center items-center mt-6">
           <h2 className="text-2xl font-bold text-yellow-500">
@@ -280,10 +280,9 @@ const MyApplication = () => {
                 {pagination?.total} Application
               </span>
             </div>
-            <div className="mr-24">Sorting user</div>
+            {/* <div className="mr-24">Sorting user</div> */}
           </div>
           <Table
-            className="overflow-x-auto"
             dataSource={appliedApplications}
             columns={columns}
             pagination={{
@@ -292,6 +291,7 @@ const MyApplication = () => {
               total: pagination.total,
             }}
             onChange={handleTableChange}
+            mobileBreakPoint={768}
           />
         </section>
       )}

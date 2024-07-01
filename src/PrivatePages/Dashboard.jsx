@@ -93,7 +93,10 @@ const Dashboard = () => {
                       </span>
                       Manage Users
                     </NavLink>
-                    <NavLink to="/dashboard/managereviews" className="dashlinks">
+                    <NavLink
+                      to="/dashboard/managereviews"
+                      className="dashlinks"
+                    >
                       <span>
                         <BiComment className="mr-4" />
                       </span>
@@ -133,7 +136,7 @@ const Dashboard = () => {
                       Manage Scholarship
                     </NavLink>
                     <NavLink
-                      to="/dashboard/appliedApplication"
+                      to="/dashboard/appliedscholarship"
                       className="dashlinks"
                     >
                       <span>
@@ -141,11 +144,14 @@ const Dashboard = () => {
                       </span>
                       Manage Applied Applications
                     </NavLink>
-                    <NavLink to="/dashboard/myreviews" className="dashlinks">
+                    <NavLink
+                      to="/dashboard/managereviews"
+                      className="dashlinks"
+                    >
                       <span>
                         <BiComment className="mr-4" />
                       </span>
-                      All review
+                      All Review
                     </NavLink>
                   </div>
                 ) : (
@@ -197,7 +203,7 @@ const Dashboard = () => {
           </div>
         </aside>
       </div>
-      <div className="flex-grow">
+      <div className="overflow-x-auto">
         <nav className="bg-white shadow-sm dark:bg-gray-800">
           <div className="px-6 py-4">
             <div className="lg:flex lg:items-center lg:justify-between">

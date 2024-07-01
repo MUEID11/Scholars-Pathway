@@ -87,7 +87,7 @@ const AddScholarship = () => {
   return (
     <div className="container mx-auto p-2">
       <Helmet>
-        <title>Payment</title>
+        <title>Add Scholarship</title>
       </Helmet>
       <h1 className="text-xl font-bold text-slate-600 mb-2">Add Scholarship</h1>
       <form

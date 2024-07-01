@@ -6,7 +6,7 @@ const Main = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="lg:min-h-[calc(100vh-64px)]">
+      <div className="lg:min-h-[calc(100vh-64px)] overflow-x-auto">
         <Outlet />
       </div>
       <Footer></Footer>

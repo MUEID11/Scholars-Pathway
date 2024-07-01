@@ -337,6 +337,7 @@ const AppliedScholarship = () => {
               total: pagination.total,
             }}
             onChange={handleTableChange}
+            mobileBreakPoint={768}
           />
         </section>
       )}
