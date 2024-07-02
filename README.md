@@ -29,7 +29,7 @@
 - **Robust Version Control**: Transparent development with numerous commits.
 
 ## Getting Started
-1. **Clone the Repository**: From [GitHub URL].
+1. **Clone the Repository**: From github url above.
 2. **Install Dependencies**: Run `npm install`.
 3. **Set Environment Variables**: For Firebase, MongoDB and Access Token
 4. **Start the Server**: Run `npm start`.
