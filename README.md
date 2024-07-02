@@ -1,5 +1,6 @@
 # Scholars Pathway
 
+### description: 
 Welcome to **Scholars Pathway** - your go-to Scholarship Management System! This platform provides a seamless experience for students to explore suitable universities and apply for scholarships effortlessly. With roles ranging from default users to admins and moderators, everyone finds their place here. Let's dive into the key features and how to access them.
 
 ## Technology
