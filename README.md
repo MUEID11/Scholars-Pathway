@@ -7,6 +7,7 @@
 - **Express.js**
 - **Node.js**
 - **MongoDB**
+- **Stripe**
 - **Firebase**
 - **JWT**
 
