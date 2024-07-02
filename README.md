@@ -31,7 +31,7 @@
 ## Getting Started
 1. **Clone the Repository**: From [GitHub URL].
 2. **Install Dependencies**: Run `npm install`.
-3. **Set Environment Variables**: For Firebase and MongoDB.
+3. **Set Environment Variables**: For Firebase, MongoDB and Access Token
 4. **Start the Server**: Run `npm start`.
 5. **Launch the Client**: In the client directory, run `npm start`.
 6. **Explore the Platform**: Use the live site URL.
