@@ -65,8 +65,10 @@ const Navbar = () => {
     </>
   );
   return (
-    <nav className="relative bg-white shadow dark:bg-gray-800">
-      <div className="container px-6 py-4 mx-auto">
+    <nav
+      className="relative bg-white shadow dark:bg-gray-800 z-30"
+    >
+      <div data-aos="fade-down" className="container px-6 py-4 mx-auto z-30">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center justify-center ">
@@ -94,7 +96,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Menu open: "block", Menu closed: "hidden" */}
-          <div
+          <div 
             className={`absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-800 lg:mt-0 lg:p-0 lg:top-0 lg:relative lg:bg-transparent lg:w-auto lg:opacity-100 lg:translate-x-0 lg:flex lg:items-center ${
               isOpen
                 ? "translate-x-0 opacity-100 "

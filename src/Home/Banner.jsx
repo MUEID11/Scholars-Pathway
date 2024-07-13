@@ -24,14 +24,20 @@ const Banner = ({ scholarships }) => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="my-swiper w-full h-56 md:h-[600px] lg:h-[700px] overflow-hidden rounded-lg"
+        className="my-swiper w-full h-56 md:h-[600px] lg:h-[700px] overflow-hidden rounded-lg relative"
       >
         {bannerData.map((slide) => (
           <SwiperSlide
             key={slide?._id}
-            className="flex justify-center items-center"
+            className="flex justify-center items-center z-0"
           >
-            <div className="relative w-full h-full overflow-hidden">
+            <div
+              data-aos="fade-zoom-in"
+              data-aos-offset="200"
+              data-aos-easing="ease-in-sine"
+              data-aos-duration="900"
+              className="relative w-full h-full overflow-hidden"
+            >
               <img
                 src={slide?.universityImage}
                 alt={slide.title}

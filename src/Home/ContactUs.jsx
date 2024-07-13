@@ -1,14 +1,16 @@
-
 import { MdEmail, MdPhone } from "react-icons/md";
 import { RiHomeOfficeFill } from "react-icons/ri";
-
 
 const ContactUs = () => {
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
         <div className="container px-6 py-12 my-4 sm:my-12 mx-auto">
-          <div className="text-center">
+          <div
+            data-aos="fade-up"
+            data-aos-duration="500"
+            className="text-center"
+          >
             <p className="font-medium text-blue-500 dark:text-blue-400">
               Contact us
             </p>
@@ -22,10 +24,10 @@ const ContactUs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
+          <div data-aos='fade-right' className="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-col items-center justify-center text-center">
               <span className="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
-                <MdEmail/>
+                <MdEmail />
               </span>
 
               <h2 className="mt-4 text-lg font-medium text-gray-800 dark:text-white">
@@ -41,7 +43,7 @@ const ContactUs = () => {
 
             <div className="flex flex-col items-center justify-center text-center">
               <span className="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
-              <RiHomeOfficeFill />
+                <RiHomeOfficeFill />
               </span>
 
               <h2 className="mt-4 text-lg font-medium text-gray-800 dark:text-white">
@@ -57,7 +59,7 @@ const ContactUs = () => {
 
             <div className="flex flex-col items-center justify-center text-center">
               <span className="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
-              <MdPhone />
+                <MdPhone />
               </span>
 
               <h2 className="mt-4 text-lg font-medium text-gray-800 dark:text-white">

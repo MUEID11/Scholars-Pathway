@@ -25,14 +25,14 @@ const Review = () => {
     queryKey: ["allreviews"],
   });
   if (isLoading) {
-    return <Loading/>;
+    return <Loading />;
   }
   if (isError) {
     return <h1>Error loading reviews.</h1>;
   }
 
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-duration="500">
       <SectionTitle
         heading="Students Review"
         subHeading="Students praise our program for its exceptional quality and supportive environment. With top-notch instructors, engaging curriculum, and a vibrant community, our program equips students with the skills and confidence to succeed. Join us today!"
@@ -66,7 +66,7 @@ const Review = () => {
           >
             {reviews?.map((review) => (
               <SwiperSlide key={review?._id}>
-                <div className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <div data-aos="fade-left" className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                   <div className="flex justify-center -mt-16 md:justify-end">
                     <img
                       className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400"

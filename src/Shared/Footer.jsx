@@ -5,7 +5,7 @@ import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-white dark:bg-gray-900">
-      <div className="px-8 md:px24 lg:px-56 py-12 mx-auto">
+      <div data-aos='fade-up' className="px-8 md:px24 lg:px-56 py-12 mx-auto">
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
           <div className="sm:col-span-2">
             <h1 className="max-w-lg text-xl font-semibold tracking-tight text-gray-800 xl:text-2xl dark:text-white">

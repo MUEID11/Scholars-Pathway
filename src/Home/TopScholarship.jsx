@@ -18,20 +18,22 @@ const TopScholarship = () => {
     queryFn: fetchScholarships,
   });
 
-  console.log(scholarshipsData, "scholarship data");
+  // console.log(scholarshipsData, "scholarship data");
   if (isLoading) return <Loading />;
 
   return (
-    <div>
+    <div data-aos="fade-up" data-aos-duration="400">
       <SectionTitle
         heading={`Top Scholarship`}
         subHeading={`Offering unparalleled opportunities for academic excellence, financial support, and professional growth, our scholarships are designed to empower future leaders. Don’t miss your chance to excel. Apply today and transform your future!`}
       />
-      <div className="grid lg:grid-cols-2 gap-12">
+      <div
+        className="grid lg:grid-cols-2 gap-12"
+      >
         {/* Display scholarships */}
         {scholarshipsData.map((scholarship) => (
-          <div key={scholarship?._id}>
-            <div className="max-w-2xl min-h-[650px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+          <div data-aos="zoom-in" data-aos-duration="900"  key={scholarship?._id}>
+            <div className="max-w-2xl min-h-[650px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
               <img
                 className="object-cover w-full h-64"
                 src={scholarship?.universityImage}
@@ -50,7 +52,7 @@ const TopScholarship = () => {
                     {scholarship?.scholarshipName}
                   </div>
                   <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    {scholarship?.description}
+                    {scholarship?.description.slice(0, 100)} <span>...</span>
                   </p>
                   <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 font-semibold">
                     Application Fee: {`${scholarship?.applicationFees}`}
@@ -90,8 +92,8 @@ const TopScholarship = () => {
         ))}
       </div>
       <div className="flex justify-center items-center my-6">
-        <Link to="/all" className="btn bg-yellow-100 text-yellow-600">
-          View All Scholarship
+        <Link to="/all" className="btn bg-violet-100 text-violet-600 mt-8">
+          View All
         </Link>
       </div>
     </div>
