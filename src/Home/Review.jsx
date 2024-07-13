@@ -66,7 +66,7 @@ const Review = () => {
           >
             {reviews?.map((review) => (
               <SwiperSlide key={review?._id}>
-                <div data-aos="fade-left" className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
+                <div data-aos="fade-left" data-aos-duration="700" className="w-full max-w-md px-8 py-4 mt-16 bg-white rounded-lg shadow-lg dark:bg-gray-800">
                   <div className="flex justify-center -mt-16 md:justify-end">
                     <img
                       className="object-cover w-20 h-20 border-2 border-blue-500 rounded-full dark:border-blue-400"

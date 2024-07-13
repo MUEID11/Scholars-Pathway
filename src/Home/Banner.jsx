@@ -24,18 +24,15 @@ const Banner = ({ scholarships }) => {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
+        data-aos="zoom-in-down" data-aos-duration='500'
         className="my-swiper w-full h-56 md:h-[600px] lg:h-[700px] overflow-hidden rounded-lg relative"
       >
         {bannerData.map((slide) => (
           <SwiperSlide
-            key={slide?._id}
+            key={slide?._id} 
             className="flex justify-center items-center z-0"
           >
             <div
-              data-aos="fade-zoom-in"
-              data-aos-offset="200"
-              data-aos-easing="ease-in-sine"
-              data-aos-duration="900"
               className="relative w-full h-full overflow-hidden"
             >
               <img

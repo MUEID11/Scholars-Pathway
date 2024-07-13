@@ -24,7 +24,7 @@ const ContactUs = () => {
             </p>
           </div>
 
-          <div data-aos='fade-right' className="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
+          <div data-aos='fade-right' data-aos-duration="700" className="grid grid-cols-1 gap-12 mt-10 md:grid-cols-2 lg:grid-cols-3">
             <div className="flex flex-col items-center justify-center text-center">
               <span className="p-3 text-blue-500 rounded-full bg-blue-100/80 dark:bg-gray-800">
                 <MdEmail />

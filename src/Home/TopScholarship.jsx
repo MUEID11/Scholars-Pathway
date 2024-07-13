@@ -22,17 +22,21 @@ const TopScholarship = () => {
   if (isLoading) return <Loading />;
 
   return (
-    <div data-aos="fade-up" data-aos-duration="400">
-      <SectionTitle
-        heading={`Top Scholarship`}
-        subHeading={`Offering unparalleled opportunities for academic excellence, financial support, and professional growth, our scholarships are designed to empower future leaders. Don’t miss your chance to excel. Apply today and transform your future!`}
-      />
-      <div
-        className="grid lg:grid-cols-2 gap-12"
-      >
+    <div>
+      <div data-aos="fade-up" data-aos-duration="500">
+        <SectionTitle
+          heading={`Top Scholarship`}
+          subHeading={`Offering unparalleled opportunities for academic excellence, financial support, and professional growth, our scholarships are designed to empower future leaders. Don’t miss your chance to excel. Apply today and transform your future!`}
+        />
+      </div>
+      <div className="grid lg:grid-cols-2 gap-12">
         {/* Display scholarships */}
         {scholarshipsData.map((scholarship) => (
-          <div data-aos="zoom-in" data-aos-duration="900"  key={scholarship?._id}>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="900"
+            key={scholarship?._id}
+          >
             <div className="max-w-2xl min-h-[650px] overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800 ">
               <img
                 className="object-cover w-full h-64"

@@ -1,7 +1,7 @@
 const BlogSection = () => {
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="container px-6 py-10 mx-auto">
+      <div data-aos='fade-in' data-aos-duration='500' className="container px-6 py-10 mx-auto">
         <h1 className="text-2xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white text-center">
           From the blog
         </h1>

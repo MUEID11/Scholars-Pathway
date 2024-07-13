@@ -68,7 +68,7 @@ const Navbar = () => {
     <nav
       className="relative bg-white shadow dark:bg-gray-800 z-30"
     >
-      <div data-aos="fade-down" className="container px-6 py-4 mx-auto z-30">
+      <div data-aos="fade-down"  className="container px-6 py-4 mx-auto z-30 overflow-hidden">
         <div className="lg:flex lg:items-center lg:justify-between">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center justify-center ">
